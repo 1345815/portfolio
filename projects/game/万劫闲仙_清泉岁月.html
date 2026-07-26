@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>万劫闲仙·清泉岁月</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Noto Serif SC","Source Han Serif CN",serif;background:#e8e4d4;color:#3e3a30;line-height:1.9;min-height:100vh;font-size:17px}
+.w{max-width:520px;margin:0 auto;padding:24px 18px}
+.panel{background:linear-gradient(135deg,#f5f1e3,#ede8d6);border:1px solid #c4b898;border-radius:12px;padding:16px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.panel-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.cname{font-size:22px;color:#8a6a10;font-weight:600;letter-spacing:3px}
+.ctitle{font-size:13px;color:#9a8c70;background:#f0ead6;border:1px solid #c4b898;border-radius:4px;padding:3px 12px}
+.pday{font-size:14px;color:#7a7060;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid #d4ccb8}
+.pday b{color:#a87a20;font-size:17px}
+.zhong{display:inline-block;width:22px;height:22px;border-radius:50%;border:1.5px solid #bbb;text-align:center;font-size:12px;color:#8a8070;line-height:20px;margin-left:8px;vertical-align:middle;transition:.3s}
+.zhong.p{border-color:#a87a20;color:#a87a20;animation:pl 2s infinite}
+.zhong.a{border-color:#c04428;color:#c04428;background:#fde8e0;animation:pl 1s infinite}
+@keyframes pl{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+.paths{margin-bottom:12px}
+.pr{display:flex;align-items:center;gap:8px;margin:5px 0}
+.pn{width:36px;font-size:14px;color:#5a5238;flex-shrink:0}
+.pb{flex:1;height:10px;background:#d8d2c2;border-radius:5px;overflow:hidden;position:relative}
+.pf{height:100%;border-radius:5px;transition:width .6s ease;position:relative}
+.pf::after{content:'';position:absolute;top:0;left:0;right:0;height:50%;background:rgba(255,255,255,.2);border-radius:5px 5px 0 0}
+.pl{width:76px;font-size:12px;color:#8a8070;text-align:right;flex-shrink:0}
+.jrow{display:flex;align-items:center;gap:6px;margin-bottom:8px;padding-top:10px;border-top:1px solid #d4ccb8;flex-wrap:wrap}
+.jlabel{font-size:13px;color:#7a7060;margin-right:4px}
+.jdot{width:14px;height:14px;border-radius:50%;border:2px solid #c4b898;transition:.3s;flex-shrink:0}
+.jdot.done{background:#a87a20;border-color:#a87a20}
+.jdot.active{background:#c04428;border-color:#c04428;animation:pl 1s infinite}
+.vrow{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.vi{font-size:12px;color:#7a7060;background:#f0ead6;border:1px solid #d4ccb8;border-radius:4px;padding:2px 8px}
+.sb{margin-bottom:16px;min-height:100px}
+.st2{font-size:18px;line-height:2.1;letter-spacing:.5px;color:#3e3a30}
+.st2 p{margin-bottom:10px;opacity:0;animation:fi .5s forwards}
+@keyframes fi{to{opacity:1}}
+.hi{color:#a87a20}.wr{color:#c04428}.wm{color:#4a8040}.gm{color:#7a7060;font-size:15px}
+.ptag{display:inline-block;font-size:13px;color:#9a8c70;border:1px solid #d4ccb8;border-radius:4px;padding:2px 12px;margin-bottom:8px;background:#f5f1e3}
+.cb{margin-top:12px}
+.bc{display:block;width:100%;padding:14px 18px;margin-bottom:10px;background:#f4f0e6;border:1px solid #c4b898;border-radius:8px;color:#3e3a30;font-family:inherit;font-size:17px;text-align:left;cursor:pointer;transition:.2s;line-height:1.6}
+.bc:hover{border-color:#a87a20;color:#a87a20;background:#efe6d4;transform:translateX(4px)}
+.bc .su{font-size:14px;color:#8a8070;margin-top:3px}
+.bc:hover .su{color:#a87a20}
+.nb{position:fixed;top:24px;left:50%;transform:translateX(-50%);background:#f4f0e6;border:1px solid #a87a20;border-radius:8px;padding:12px 24px;font-size:15px;color:#a87a20;z-index:100;animation:ni .3s forwards,no .3s 2.5s forwards;pointer-events:none;box-shadow:0 4px 12px rgba(0,0,0,.1)}
+@keyframes ni{from{opacity:0;top:10px}to{opacity:1;top:24px}}
+@keyframes no{to{opacity:0;top:10px}}
+.bb{display:flex;justify-content:center;gap:14px;padding:12px 0;border-top:1px solid #c4b898;margin-top:8px}
+.btn{font-size:15px;color:#7a7060;background:#f4f0e6;border:1px solid #c4b898;border-radius:4px;padding:6px 16px;cursor:pointer;font-family:inherit;transition:.2s}
+.btn:hover{border-color:#a87a20;color:#a87a20}
+.ts{position:relative;overflow:hidden;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:0}
+.ts-bg{position:absolute;top:0;left:0;right:0;bottom:0;z-index:0}
+.ts-content{position:relative;z-index:1;width:100%;max-width:460px;padding:0 20px;text-align:center}
+.bell-wrap{margin-bottom:16px;display:flex;justify-content:center}
+.bell-svg{width:110px;height:158px;animation:bellGlow 3s ease-in-out infinite}
+@keyframes bellGlow{0%,100%{filter:drop-shadow(0 0 8px rgba(232,200,96,.15))}50%{filter:drop-shadow(0 0 18px rgba(232,200,96,.32))}}
+.ts-sub2{font-size:15px;color:#b8a878;line-height:2.4;letter-spacing:2px;margin-bottom:20px;opacity:.85}
+.ts-sub2 .sub-line{display:block}
+.ts .title-wrap{margin-bottom:6px}
+.ts h1{font-size:44px;color:#e8c860;font-weight:700;letter-spacing:12px;text-indent:12px;text-shadow:0 0 20px rgba(232,200,96,.25),0 2px 8px rgba(0,0,0,.3);margin-bottom:2px}
+.ts .ts-sub{font-size:16px;color:#a89870;letter-spacing:8px;text-indent:8px;margin-bottom:20px;opacity:.8}
+.ts .ts-divider{width:60%;height:1px;background:linear-gradient(90deg,transparent,rgba(232,168,32,.4),transparent);margin:0 auto 24px}
+.ts .ts-tags{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.ts .ts-tag{font-size:14px;color:#c4b890;border:1px solid rgba(168,140,80,.3);border-radius:20px;padding:5px 16px;background:rgba(40,36,28,.3);backdrop-filter:blur(2px);letter-spacing:1px}
+.ts .btn-wrap{display:flex;justify-content:center;align-items:center;flex-direction:column;gap:14px}
+.sb2{padding:18px 56px;background:linear-gradient(135deg,#3a3328,#2a2418);border:1px solid #c0922a;border-radius:10px;color:#e8c860;font-size:20px;font-family:inherit;cursor:pointer;letter-spacing:6px;text-indent:6px;transition:.3s;box-shadow:0 4px 20px rgba(192,146,42,.15)}
+.sb2:hover{background:linear-gradient(135deg,#4a3d2e,#3a3120);border-color:#e8a830;color:#ffd840;box-shadow:0 6px 28px rgba(232,168,48,.25);transform:translateY(-2px)}
+.lb{padding:10px 28px;background:transparent;border:1px solid rgba(168,140,80,.3);border-radius:8px;color:#a89870;font-size:14px;font-family:inherit;cursor:pointer;transition:.2s}
+.lb:hover{border-color:rgba(232,168,32,.5);color:#c4b890}
+.ts .ts-hint{margin-top:24px;font-size:13px;color:#6a6258;opacity:.6}
+.es{text-align:center;padding:40px 20px}
+.es .et{font-size:14px;color:#7a7060;border:1px solid #c4b898;border-radius:4px;padding:5px 14px;margin-bottom:20px;display:inline-block}
+.es .rb{padding:14px 36px;background:#f4f0e6;border:1px solid #a87a20;border-radius:8px;color:#a87a20;font-size:16px;font-family:inherit;cursor:pointer;transition:.2s;margin-top:30px}
+.es .rb:hover{background:#efe6d4;color:#c09020}
+.hd{display:none}
+@media(max-width:400px){.w{padding:16px 12px}.bc{padding:12px 14px;font-size:16px}.st2{font-size:16px}.cname{font-size:20px}.pn{width:32px}.pl{width:64px;font-size:11px}.jdot{width:12px;height:12px}}
+</style>
+</head>
+<body>
+<div class="w" id="app">
+
+<div class="ts" id="titleScreen">
+<div class="ts-bg">
+<svg width="100%" height="100%" viewBox="0 0 400 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#1a1814"/><stop offset=".25" stop-color="#2a2418"/><stop offset=".5" stop-color="#3a3328"/><stop offset=".7" stop-color="#5a4e38"/><stop offset=".85" stop-color="#8a7a58"/><stop offset="1" stop-color="#a89868"/>
+</linearGradient>
+<radialGradient id="crackglow" cx=".5" cy=".5" r=".5">
+<stop offset="0" stop-color="#e8c860" stop-opacity=".15"/><stop offset=".5" stop-color="#c09020" stop-opacity=".05"/><stop offset="1" stop-color="#000" stop-opacity="0"/>
+</radialGradient>
+<filter id="blur2"><feGaussianBlur stdDeviation="2"/></filter>
+<filter id="blur3"><feGaussianBlur stdDeviation="4"/></filter>
+</defs>
+<rect width="400" height="700" fill="url(#sky2)"/>
+<ellipse cx="200" cy="340" rx="180" ry="80" fill="url(#crackglow)"/>
+<path d="M0 400 L50 350 L110 380 L170 330 L230 370 L290 340 L350 380 L400 350 L400 700 L0 700 Z" fill="#3a3328" opacity=".5" filter="url(#blur3)"/>
+<path d="M0 440 L40 400 L90 425 L150 385 L200 415 L260 390 L320 420 L400 395 L400 700 L0 700 Z" fill="#4a4030" opacity=".6" filter="url(#blur2)"/>
+<path d="M195 430 L188 460 L193 490 L186 520 L194 550 L188 580 L195 610" fill="none" stroke="#1a1408" stroke-width="6" stroke-linecap="round" opacity=".7"/>
+<path d="M205 435 L210 465 L207 495 L213 525 L206 555 L212 585 L205 615" fill="none" stroke="#1a1408" stroke-width="5" stroke-linecap="round" opacity=".6"/>
+<path d="M198 435 L196 465 L198 495 L197 525 L199 555 L198 585 L199 610" fill="none" stroke="#c0902a" stroke-width="1.5" stroke-linecap="round" opacity=".4"/>
+<path d="M0 470 L100 455 L200 470 L300 450 L400 465 L400 700 L0 700 Z" fill="#2a2418" opacity=".8"/>
+<line x1="20" y1="540" x2="380" y2="540" stroke="#6a5a38" stroke-width="1" opacity=".15"/>
+<line x1="20" y1="575" x2="380" y2="575" stroke="#6a5a38" stroke-width="1" opacity=".12"/>
+<line x1="20" y1="610" x2="380" y2="610" stroke="#6a5a38" stroke-width="1" opacity=".1"/>
+<path d="M60 465 L78 445 L96 465 Z" fill="#1a1812" opacity=".7"/>
+<path d="M130 462 L148 442 L166 462 Z" fill="#1a1812" opacity=".6"/>
+<path d="M270 460 L288 440 L306 460 Z" fill="#1a1812" opacity=".6"/>
+<path d="M330 465 L348 448 L366 465 Z" fill="#1a1812" opacity=".5"/>
+<line x1="240" y1="465" x2="240" y2="430" stroke="#1a1812" stroke-width="3" opacity=".6"/>
+<circle cx="240" cy="425" r="14" fill="#1a1812" opacity=".4"/>
+<circle cx="233" cy="420" r="9" fill="#1a1812" opacity=".35"/>
+<circle cx="248" cy="422" r="10" fill="#1a1812" opacity=".35"/>
+<rect width="400" height="700" fill="#000" opacity=".03"/>
+</svg>
+</div>
+<div class="ts-content">
+<div class="bell-wrap">
+<svg class="bell-svg" viewBox="0 0 140 200" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="bb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8c860" stop-opacity=".15"/><stop offset=".5" stop-color="#c0902a" stop-opacity=".08"/><stop offset="1" stop-color="#8a6020" stop-opacity=".12"/></linearGradient>
+<radialGradient id="bh" cx=".5" cy=".35" r=".6"><stop offset="0" stop-color="#e8c860" stop-opacity=".25"/><stop offset=".5" stop-color="#c0902a" stop-opacity=".08"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+<filter id="bgf" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<ellipse cx="70" cy="90" rx="65" ry="80" fill="url(#bh)"/>
+<line x1="70" y1="0" x2="70" y2="22" stroke="#c0902a" stroke-width="2" opacity=".5"/>
+<path d="M52 28 Q60 14 70 12 Q80 14 88 28" fill="none" stroke="#c0902a" stroke-width="2" opacity=".7" filter="url(#bgf)"/>
+<path d="M56 30 Q62 18 70 16 Q78 18 84 30" fill="none" stroke="#e8c860" stroke-width="1.5" opacity=".5"/>
+<path d="M50 30 Q52 26 56 28" fill="none" stroke="#c0902a" stroke-width="1.5" opacity=".4"/>
+<path d="M90 30 Q88 26 84 28" fill="none" stroke="#c0902a" stroke-width="1.5" opacity=".4"/>
+<path d="M30 38 Q30 33 42 31 L98 31 Q110 33 110 38 L116 115 Q116 130 104 137 L36 137 Q24 130 24 115 Z" fill="url(#bb)" stroke="#c0902a" stroke-width="2" opacity=".8" filter="url(#bgf)"/>
+<path d="M35 42 Q35 38 44 36 L96 36 Q105 38 105 42 L110 110 Q110 122 100 128 L40 128 Q30 122 30 110 Z" fill="none" stroke="#e8c860" stroke-width=".8" opacity=".3"/>
+<line x1="28" y1="58" x2="112" y2="58" stroke="#c0902a" stroke-width=".8" opacity=".25"/>
+<line x1="27" y1="76" x2="113" y2="76" stroke="#c0902a" stroke-width=".8" opacity=".2"/>
+<line x1="26" y1="94" x2="114" y2="94" stroke="#c0902a" stroke-width=".8" opacity=".15"/>
+<line x1="45" y1="40" x2="42" y2="128" stroke="#c0902a" stroke-width=".4" opacity=".12"/>
+<line x1="60" y1="40" x2="60" y2="132" stroke="#c0902a" stroke-width=".4" opacity=".12"/>
+<line x1="70" y1="40" x2="70" y2="133" stroke="#c0902a" stroke-width=".4" opacity=".12"/>
+<line x1="80" y1="40" x2="80" y2="132" stroke="#c0902a" stroke-width=".4" opacity=".12"/>
+<line x1="95" y1="40" x2="98" y2="128" stroke="#c0902a" stroke-width=".4" opacity=".12"/>
+<circle cx="40" cy="52" r="3" fill="none" stroke="#e8c860" stroke-width="1.2" opacity=".4"/>
+<circle cx="40" cy="52" r="1" fill="#e8c860" opacity=".3"/>
+<circle cx="55" cy="49" r="3" fill="none" stroke="#e8c860" stroke-width="1.2" opacity=".4"/>
+<circle cx="55" cy="49" r="1" fill="#e8c860" opacity=".3"/>
+<circle cx="70" cy="48" r="3" fill="none" stroke="#e8c860" stroke-width="1.2" opacity=".4"/>
+<circle cx="70" cy="48" r="1" fill="#e8c860" opacity=".3"/>
+<circle cx="85" cy="49" r="3" fill="none" stroke="#e8c860" stroke-width="1.2" opacity=".4"/>
+<circle cx="85" cy="49" r="1" fill="#e8c860" opacity=".3"/>
+<circle cx="100" cy="52" r="3" fill="none" stroke="#e8c860" stroke-width="1.2" opacity=".4"/>
+<circle cx="100" cy="52" r="1" fill="#e8c860" opacity=".3"/>
+<text x="70" y="70" text-anchor="middle" fill="#c0902a" font-size="7" opacity=".2" font-family="serif">劫</text>
+<path d="M24 115 Q30 122 36 115 Q42 122 48 115 Q54 122 60 115 Q66 122 72 115 Q78 122 84 115 Q90 122 96 115 Q102 122 108 115 Q112 122 116 115" fill="none" stroke="#c0902a" stroke-width="2" opacity=".7"/>
+<ellipse cx="70" cy="137" rx="46" ry="8" fill="rgba(0,0,0,0.4)" stroke="#c0902a" stroke-width="1.5" opacity=".5"/>
+<line x1="70" y1="125" x2="70" y2="150" stroke="#c0902a" stroke-width="2" opacity=".5"/>
+<circle cx="70" cy="153" r="6" fill="#c0902a" opacity=".35"/>
+<circle cx="70" cy="153" r="3" fill="#e8c860" opacity=".4"/>
+<circle cx="70" cy="85" r="45" fill="none" stroke="#e8c860" stroke-width=".8" opacity="0"><animate attributeName="r" from="42" to="75" dur="4s" repeatCount="indefinite"/><animate attributeName="opacity" from=".3" to="0" dur="4s" repeatCount="indefinite"/></circle>
+<circle cx="70" cy="85" r="45" fill="none" stroke="#e8c860" stroke-width=".5" opacity="0"><animate attributeName="r" from="42" to="75" dur="4s" begin="1.3s" repeatCount="indefinite"/><animate attributeName="opacity" from=".25" to="0" dur="4s" begin="1.3s" repeatCount="indefinite"/></circle>
+<circle cx="70" cy="85" r="45" fill="none" stroke="#e8c860" stroke-width=".3" opacity="0"><animate attributeName="r" from="42" to="75" dur="4s" begin="2.6s" repeatCount="indefinite"/><animate attributeName="opacity" from=".2" to="0" dur="4s" begin="2.6s" repeatCount="indefinite"/></circle>
+</svg>
+</div>
+<div class="title-wrap"><h1>万劫闲仙</h1></div>
+<div class="ts-sub2">
+<span class="sub-line">神仙本是凡人做，只怕凡人心不坚</span>
+<span class="sub-line">三千功满飞升日，九劫刑完始得仙</span>
+</div>
+<div class="ts-divider"></div>
+<div class="ts-tags">
+<span class="ts-tag">种地</span><span class="ts-tag">喝茶</span><span class="ts-tag">渡劫</span><span class="ts-tag">成仙</span>
+</div>
+<div class="btn-wrap">
+<button class="sb2" onclick="newGame()">成 仙</button>
+<button class="lb" id="loadBtn" onclick="loadGame()" style="display:none">继续过日子</button>
+</div>
+<div class="ts-hint">单次游玩约20-40分钟 · 九劫 · 多结局</div>
+</div>
+</div>
+
+<div id="gameScreen" class="hd">
+<div class="panel" id="panel">
+<div class="panel-top"><span class="cname">秦荒</span><span class="ctitle" id="charTitle">废骨之人</span></div>
+<div class="pday">第 <b id="dayN">1</b> 年 · <span id="seasonT">初到</span><span class="zhong" id="zhongI">钟</span></div>
+<div class="paths" id="paths"></div>
+<div class="jrow" id="jieRow"></div>
+<div class="vrow" id="villRow"></div>
+</div>
+<div class="sb" id="storyB"></div>
+<div class="cb" id="choiceB"></div>
+<div class="bb">
+<button class="btn" onclick="saveGame()">存档</button>
+<button class="btn" onclick="loadGame()">读档</button>
+<button class="btn" onclick="delSave()">删档</button>
+</div>
+</div>
+
+<div id="endScreen" class="hd"></div>
+
+</div>
+<script>
+// ========== 常量 ==========
+var LV = ['凡品初段','凡品中段','凡品后段','灵品初段','灵品中段','灵品后段','圣品初段','圣品中段','圣品后段','神品'];
+var JN = ['力径','气径','魂径','器径','阵径','劫径'];
+var JC = ['#80b040','#50b890','#a0a0d0','#e09070','#70a8d0','#d0a020'];
+var VN = ['水渠','灵果','食物','好感'];
+var SS = {1:'初到',3:'三载',10:'十载',25:'廿五载',50:'半百',60:'一甲子',70:'七十载',85:'近百年',91:'百载',110:'百一十载',130:'两甲子',150:'第二甲子',170:'百七十载',180:'百八十载',200:'两百载',220:'两百廿载',240:'近三甲子',260:'两百六十载',280:'第三甲子',300:'三百载',320:'三百廿载',340:'三百四十载',360:'近四甲子',380:'三百八十载',400:'四百载'};
+var DR = [3,7,3,3,5,5,7,4,3];
+var NM = ['天雷劫','心魔劫','血噬劫','地裂劫','虚空劫','业火劫','天命劫','轮回劫','飞升劫'];
+var TITLES = ['废骨之人','雷骨初成','心壁已成','血脉净化','心壁透光','灵脉重连','业火净体','天命觉醒','轮回通透','闲仙'];
+
+// ========== 状态 ==========
+var G;
+var dayPhase = 0;
+function initState() {
+  return {day:1,j:[0,0,0,0,0,0],v:[0,30,30,50],jie:[0,0,0,0,0,0,0,0,0],cj:null,jd:0,xz:0,ev:[],prevLv:[0,0,0,0,0,0]};
+}
+
+// ========== 工具 ==========
+function sn() {
+  var s = '初到';
+  for (var d in SS) { if (G.day >= Number(d)) s = SS[d]; }
+  return s;
+}
+function getTitle() {
+  var s = 0;
+  for (var i = 0; i < 9; i++) s += G.jie[i];
+  return TITLES[Math.min(s,9)];
+}
+function jieSum() {
+  var s = 0;
+  for (var i = 0; i < 9; i++) s += G.jie[i];
+  return s;
+}
+function pathSum() {
+  return G.j[0]+G.j[1]+G.j[2]+G.j[3]+G.j[4]+G.j[5];
+}
+function chkLoad() {
+  if (localStorage.getItem('wjxx2')) document.getElementById('loadBtn').style.display = 'inline-block';
+}
+function show(id) { document.getElementById(id).classList.remove('hd'); }
+function hide(id) { document.getElementById(id).classList.add('hd'); }
+
+// ========== 入口 ==========
+function newGame() {
+  G = initState();
+  hide('titleScreen'); show('gameScreen'); opening();
+}
+function loadGame() {
+  var s = localStorage.getItem('wjxx2');
+  if (s) {
+    G = JSON.parse(s);
+    while (G.jie.length < 9) G.jie.push(0);
+    G.prevLv = G.prevLv || [0,0,0,0,0,0];
+    hide('titleScreen'); hide('endScreen'); show('gameScreen');
+    chkLvNotify(); day(); notify('读档了');
+  } else { notify('没有存档'); }
+}
+function saveGame() { localStorage.setItem('wjxx2',JSON.stringify(G)); notify('存档了'); }
+function delSave() { localStorage.removeItem('wjxx2'); notify('删档了'); chkLoad(); }
+
+// ========== 序幕 ==========
+function opening() {
+  story([
+    '秦荒觉得自己大概是死了。',
+    '天渊宗长老说过——万劫钟要醒，得过一场大劫。他当时没当回事。',
+    '裂隙深渊里没有光。掉了多久——不知道。可能一天。可能一年。',
+    '但心脏在跳。',
+    '他摸了摸胸口。跳的。还挺有劲。',
+    '万劫钟在心脏里浮着。半透明的。虚的。像一团还没凝固的水。本命法宝。生来带的。长老说他是敲钟人——钟认了他。但钟要醒，得劫。',
+    '长老送他来裂隙边。不是推。是告诉他——劫在这里。他来了。掉了。活着出来了。',
+    '钟没响。',
+    '但秦荒知道它会响。什么时候响——不知道。就像不知道什么时候会被雷劈。',
+    '先不管钟。先管肚子。',
+    '他饿了。饿到胃在抽。在裂隙深渊里不知道饿了多久——出来了，饿的感觉才回来。',
+    '上面是灰天。灰的。不是阴天那种灰，是像锅底一样，灰到底了。',
+    '脚下是荒山。石头。枯草。风从石头缝里吹上来，凉的。',
+    '远处有炊烟。',
+    '有烟说明有人。有人说明有饭。',
+    '秦荒站起来。骨头咔咔响，像生锈的铰链。但站住了。',
+    '<span class="wm">活着。</span>',
+    '先找口吃的。'
+  ], function() {
+    story([
+      '顺着炊烟走。走了大概一刻钟。',
+      '灰天底下一个村子。土墙，矮房，几棵歪脖子树。三十来户人家。不大。',
+      '田是荒的。三百亩，全荒着。土干裂得像老人手背的纹路。',
+      '有个老太太在院子里翻土。年纪不小了，翻得也不快，但一下一下的，不停。',
+      '她看见秦荒了。',
+      '\u201C哪来的？\u201D',
+      '\u201C天上掉下来的。\u201D',
+      '老太太看了他一眼。灰头土脸，衣服破得像筛子，但眼睛是亮的。',
+      '\u201C饿了吧。\u201D',
+      '不是问句。',
+      '老太太往屋里走：\u201C叫宋婶。灶上还有红烧肉。\u201D'
+    ], function() {
+      story([
+        '红烧肉。',
+        '灵果炖的。酱汁浓到挂壁。土豆炖烂了，筷子一碰就散。',
+        '秦荒吃了三碗。',
+        '宋婶在旁边看着，也不说话。等他放筷子了才问：\u201C你身上这股气——不像修士。也不像凡人。怪。\u201D',
+        '秦荒没答。他不知道怎么答。',
+        '心脏里的钟突然震了一下。',
+        '不是响。是<span class="wr">预震</span>。像地震前桌子抖了一下。',
+        '秦荒放下碗。'
+      ], function() {
+        story([
+          '\u201C婶儿，你家有空房子吗。\u201D',
+          '\u201C村东头有一间。漏雨。但能住。\u201D',
+          '\u201C我住些日子。抵钱——干活。翻地。\u201D',
+          '宋婶看了他一眼。\u201C你这身板还翻地？\u201D',
+          '\u201C试试。\u201D',
+          '秦荒走到村东头那间破屋子。推开门——灰。蛛网。一张缺腿的桌。',
+          '他把兜里最后的家当掏出来：一块碎灵石，三枚铜钱，一个空的储物袋。',
+          '没了。从天渊宗出来——就剩这些。',
+          '他在桌边坐下。心脏里的钟浮着。没响。但那股预震的余韵还在——像暴风雨前的闷热。',
+          '<span class="gm">先不管。</span>',
+          '<span class="gm">先看看这村子。</span>'
+        ], function() {
+          G.jie[0] = 0; G.ev.push('op');
+          choices([
+            {text:'出门看看这个村子', sub:'灰天底下，炊烟，荒田', cb:function(){
+              G.jie[0] = 1; G.ev.push('op2'); notify('第一劫·天雷 — 预震已现'); day();
+            }},
+            {text:'在屋里坐一会儿', sub:'心脏里的钟还没响——先歇歇', cb:function(){
+              G.jie[0] = 1; G.ev.push('op2'); notify('第一劫·天雷 — 预震已现'); day();
+            }}
+          ]);
+        });
+      });
+    });
+  });
+}
+
+// ========== 每载流程 ==========
+function day() {
+  dayPhase = 0;
+  updateUI();
+  G.prevLv = G.j.slice();
+  var sp = checkSpecial();
+  if (sp) { sp(); return; }
+  startMorning();
+}
+function after() {
+  G.day++;
+  chkJie();
+  if (G.cj !== null) { jieStart(); return; }
+  chkLvNotify();
+  day();
+}
+
+// ===== 早晨 =====
+function startMorning() {
+  dayPhase = 0;
+  story(morningNarr(), function() { choices(morningChoices()); });
+}
+function morningNarr() {
+  var t = ['<span class="ptag">春耕</span>'];
+  var d = G.day;
+  if (d <= 5) t.push('灰天变浅了一点。清泉村醒来——远处有翻地的声响。春耕。');
+  else if (d <= 15) t.push('十载了。田里的灵苗比刚来时高了一截。风从山那边吹过来，带着灵气。');
+  else if (d <= 30) t.push('三十载了。远田郁郁葱葱。水渠里的灵水声比刚来时响了不少。');
+  else if (d <= 60) t.push('一甲子了。灵气比刚来时厚了——不明显，但有。像雾散了一半。');
+  else if (d <= 80) t.push('七十载了。三百亩灵麦从青绿变淡金。修仙无日月，一晃几十载。');
+  else if (d <= 90) t.push('近百年了。田空了一半。剩下的一半在等。');
+  else if (d <= 110) t.push('百载了。三百亩白。雪落在空田上——什么都没写，什么都能写。');
+  else if (d <= 130) t.push('百三十载了。田冻了一半。但翻得动——费劲但翻得动。');
+  else if (d <= 150) t.push('第二甲子了。雪化了。一年化一点。像旧棉袄被晒干。');
+  else if (d <= 170) t.push('百七十载了。三百亩又种了。冬灵草三亩留着。');
+  else if (d <= 195) t.push('百九十五载。灵气在回流。从完界碎片往裂隙往外往清泉村。');
+  else if (d <= 220) t.push('两百廿载。灵麦又从青绿变淡金了。冬灵草开了绿花。');
+  else if (d <= 240) t.push('近三甲子。比上甲子多了一茬。多了一茬就是好了。');
+  else if (d <= 260) t.push('两百六十载。灰天底下的冬——比百年前暖了一点。');
+  else if (d <= 280) t.push('第三甲子了。灰天黄昏的光从一片白变成两片白。');
+  else if (d <= 300) t.push('三百载。三百亩又种了。冬灵草留了五亩——育种。');
+  else if (d <= 320) t.push('三百廿载。完界碎片在自愈——慢，但在自愈。灵气在往回流。');
+  else if (d <= 340) t.push('三百四十载。灵麦又从青绿变淡金了。灰天亮了一层。');
+  else if (d <= 360) t.push('近四甲子。比上甲子又多了一茬。多了就是好了。');
+  else if (d <= 380) t.push('三百八十载。灰天底下的冬——比百年前又暖了一点。');
+  else if (d <= 400) t.push('四百载将近。万劫钟浮着。不响。等。');
+  else t.push('四百载了。灰天亮了两层。');
+
+  // 事件织入
+  if (d >= 95 && d <= 100 && !G.ev.includes('wh') && G.ev.includes('yh')) {
+    t.push('宋老根回来了。\n\u201C天渊宗方案是加固封印。域府方案是迁移——裂隙周边村镇全迁走。\u201D\n\u201C清泉村差半里。域府说观察十载。\u201D');
+    G.ev.push('wh'); G.v[3] += 5;
+  }
+  if (d >= 100 && d <= 108 && !G.ev.includes('xs')) {
+    t.push('第一场雪。三百亩白。\n小豆子跑出来：\u201C秦大哥！雪！\u201D碰手心——微弱雷击。\n\u201C雷骨不是鞭炮。得攒。搬石头攒。翻地攒。\u201D');
+    G.ev.push('xs'); G.xz += 1;
+  }
+  if (d >= 140 && d <= 148 && !G.ev.includes('dc')) {
+    t.push('冬灵草出苗了。苗矮。苗瘦。苗绿。\n扛过冬的绿比没扛过的深一层。\n老周：\u201C活了。零下三十度扛过来了。不怕冷的灵气——更稳。\u201D');
+    G.ev.push('dc'); G.v[1] += 5;
+  }
+  if (d >= 195 && d <= 205 && !G.ev.includes('df2') && G.jie[3] >= 1) {
+    t.push('域府来信。\n<span class="hi">第二次域会——专门讨论稳纹。</span>各宗门方案都不如清泉村的。域府要推广稳纹。');
+    G.ev.push('df2');
+  }
+  if (d >= 210 && d <= 218 && !G.ev.includes('wk') && G.jie[3] >= 1) {
+    t.push('第五劫预告——万劫钟第五凹槽<span class="hi">\u201C虚空\u201D</span>亮了。\n但钟没响。预告就是还没来。还没来就是继续种地。');
+    G.ev.push('wk');
+  }
+  if (d >= 285 && d <= 295 && !G.ev.includes('tg') && G.jie[4] >= 1) {
+    t.push('域府来了阵师。三个。\n\u201C域府决定——清泉村稳纹法向全域推广。\u201D\n\u201C怎么推广？\u201D\u201C教人刻。拓你的纹路。\u201D\n秦荒看了一眼茶杯。\u201C行。拓完了我得喝茶。\u201D');
+    G.ev.push('tg'); G.v[3] += 5;
+  }
+  if (d >= 310 && d <= 320 && !G.ev.includes('nv') && G.jie[4] >= 1) {
+    t.push('来了五户人家。带着种子和锄头。\n\u201C听说清泉村灵气厚——来种地。\u201D\n宋老根：以前往外跑。现在往里来。');
+    G.ev.push('nv'); G.v[3] += 5;
+  }
+  if (d >= 330 && d <= 340 && !G.ev.includes('sl2') && G.jie[4] >= 1) {
+    t.push('苏灵儿来了。不是修水渠——是带消息。\n\u201C别的地方也有裂隙。在扩。域府在迁人。\u201D\n\u201C但——清泉村没扩。稳纹起了作用。\u201D');
+    G.ev.push('sl2');
+  }
+  if (d >= 345 && d <= 355 && !G.ev.includes('dz') && G.jie[4] >= 1) {
+    t.push('小豆子翻地翻出了一道灵光。\n\u201C秦大哥！我手上有光！\u201D\n\u201C不是光。是灵根。力径灵根。\u201D\n\u201C那——我能修炼吗？\u201D\n\u201C你已经在修了。翻地就是修。\u201D');
+    G.ev.push('dz'); G.xz += 2;
+  }
+  if (d >= 358 && d <= 365 && !G.ev.includes('lh') && G.jie[4] >= 1) {
+    t.push('裂隙——缩了。\n不多。但缩了。\n稳纹不是绷带——是药。药效起来了。\n老周：\u201C裂隙在自愈。不是停——是在缩。\u201D');
+    G.ev.push('lh');
+  }
+  if (d >= 375 && d <= 385 && !G.ev.includes('ty2') && G.jie[5] >= 1) {
+    t.push('天渊宗来信了。不是弟子——是长老亲笔。\n\u201C秦荒——钟过了六劫了？宗门备了修炼资源。清泉村稳纹法，宗门也想学。\u201D\n秦荒把信放一边。\u201C喝茶。\u201D');
+    G.ev.push('ty2');
+  }
+  if (d >= 395 && d <= 402 && !G.ev.includes('fs') && G.jie[7] >= 1) {
+    t.push('万劫钟第九凹槽<span class="hi">\u201C飞升\u201D</span>亮了。\n钟没响。但天——裂了一条缝。光从缝里漏下来。\n不是裂隙的光。是天上来的光。');
+    G.ev.push('fs');
+  }
+  if (d > 5 && d < 30 && !G.ev.includes('t1') && Math.random() < 0.15) {
+    t.push('坐老槐树下喝茶。山茶粗，糙，但<span class="wm">干净</span>。像荒原上的风。');
+    G.ev.push('t1');
+  }
+  return t;
+}
+function morningChoices() {
+  var c = [], d = G.day;
+  var isWinter = (d >= 91 && d <= 130) || (d >= 240 && d <= 260) || (d >= 360 && d <= 380);
+  var isYear3 = d >= 280;
+  if (isWinter) c.push({text:'翻冻地', sub:'力径 · 冬翻涨得多', cb:function(){actMorning('farm_w')}});
+  else c.push({text:'去田里', sub:'力径 · 种地翻地', cb:function(){actMorning('farm')}});
+  c.push({text:'泡壶茶', sub:'魂径 · 脑子松了灵气自流', cb:function(){actMorning('tea')}});
+  if (isYear3 && G.jie[4] >= 1 && G.ev.includes('tg')) {
+    c.push({text:'传授稳纹', sub:'阵径+劫径 · 教人刻纹', cb:function(){actMorning('rune')}});
+  } else if (isYear3 && G.jie[3] >= 1 && !isWinter) {
+    c.push({text:'冬灵草育种', sub:'器径 · 灵果+3', cb:function(){actMorning('breed')}});
+  } else if (isYear3 && G.jie[4] >= 1) {
+    c.push({text:'探查完界碎片', sub:'劫径+魂径 · 看看碎片', cb:function(){actMorning('explore')}});
+  } else if (G.jie[0] >= 1 && !isWinter && d <= 90) {
+    c.push({text:'看看水渠', sub:'气径+阵径 · 顺手通一通', cb:function(){actMorning('channel')}});
+  } else if (d > 10 && !isWinter) {
+    c.push({text:'理理灵果', sub:'器径 · 灵果+1', cb:function(){actMorning('fruit')}});
+  } else if (isWinter) {
+    c.push({text:'灶边烤烤火', sub:'魂径+好感 · 冬天挤灶边', cb:function(){actMorning('fire')}});
+  } else {
+    c.push({text:'院子里坐坐', sub:'魂径 · 看看这个村子', cb:function(){actMorning('idle')}});
+  }
+  return c;
+}
+
+// ===== 午后 =====
+function startAfternoon(mAct) {
+  dayPhase = 1;
+  story(afternoonNarr(mAct), function() { choices(afternoonChoices(mAct)); });
+}
+function afternoonNarr(act) {
+  var t = ['<span class="ptag">夏长</span>'];
+  if (act === 'farm') {
+    t.push('日头高了。擦了把汗。锄头翻进土里——土软了。比上个月软。');
+    t.push('力径涨了一点。不是突然涨的——翻着翻着就涨了。');
+  } else if (act === 'farm_w') {
+    t.push('冻地翻起来费劲。但翻起来的土冒着一丝热气——冬天底下是暖的。');
+    t.push('力径涨了。冬翻比夏翻涨得多——老周说的。');
+  } else if (act === 'tea') {
+    t.push('茶泡了。粗，糙，但干净。一口下去脑子醒了。');
+    t.push('魂径松了一点。精神最松的时候灵气自流——老周说的。');
+  } else if (act === 'channel') {
+    t.push('水渠看了一遍。通了一半。堵的地方能看到灵气在打转——像水遇到了石头。');
+    t.push('修了一个堵点。气径松了一点。阵径也松了——修水渠是阵径的基础。');
+  } else if (act === 'fruit') {
+    t.push('灵果树理了一遍。剪了枯枝，松了根土。灵果比刚来时多了——不多，但多了。');
+    t.push('器径涨了一点。手指灵巧了。');
+  } else if (act === 'idle') {
+    t.push('坐了一会儿。什么都没想。灰天慢慢变浅又变深。');
+    t.push('魂径松了一点。空脑子的时候灵气自己流。');
+  } else if (act === 'fire') {
+    t.push('灶边挤着。宋婶在炖肉。热气把脸蒸红了。');
+    t.push('魂径松了。好感涨了——冬天挤灶边，挤着就亲了。');
+  } else if (act === 'rune') {
+    t.push('稳纹教了一上午。村子里三个人在学。刻得歪歪扭扭的——但能刻。');
+    t.push('阵径涨了。劫径也涨了——稳纹连着裂隙。');
+  } else if (act === 'breed') {
+    t.push('冬灵草育了一上午。选了最强的一棵做种。苗矮，苗壮，根深。');
+    t.push('器径涨了。灵果涨了——冬灵草育种是器径的根。');
+  } else if (act === 'explore') {
+    t.push('完界碎片探查了一上午。碎片在自愈——慢，但在自愈。灵气从碎片往裂隙往清泉村回流。');
+    t.push('劫径涨了。魂径也涨了——感知完界碎片需要魂径。');
+  }
+
+  // 午后事件
+  if (G.day === 5 && !G.ev.includes('xz1')) {
+    t.push('小豆子跑来了。八岁。全村最吵最皮。\n\u201C秦大哥再弄点雷出来嘛！\u201D');
+    G.ev.push('xz1'); G.xz = 1;
+  }
+  if (G.day === 15 && !G.ev.includes('lz1')) {
+    t.push('老周端着茶过来了。七十岁。\n\u201C你种的灵果——味好。自然长出来的灵气分布匀。催出来的不匀。\u201D\n老周笑了一声：\u201C这话让宗门的人听到——打你。但确实是这么回事。\u201D');
+    G.ev.push('lz1');
+  }
+  if (G.day >= 20 && G.day <= 25 && !G.ev.includes('sl') && G.jie[0] >= 1) {
+    t.push('苏灵儿到了。\n\u201C来了？\u201D\u201C修水渠？\u201D\u201C修了水的部分。灵气不会。你气径圣品——看看三个堵点？\u201D\n三分钟水渠全通。\n\u201C不错。以后水渠归你了。\u201D');
+    G.ev.push('sl'); G.v[0] = 60;
+  }
+  if (G.day >= 155 && G.day <= 165 && !G.ev.includes('yc')) {
+    t.push('域府巡查使来了。\n\u201C你的稳纹——减缓裂隙扩张速度百分之四十。域府记录了。\u201D\n\u201C怎么刻的？\u201D\u201C种地种出来的。\u201D');
+    G.ev.push('yc'); G.v[3] += 5;
+  }
+  if (G.day >= 240 && G.day <= 250 && !G.ev.includes('zs') && G.ev.includes('df2')) {
+    t.push('域府阵师来了。三个。\n\u201C你的稳纹——补不是堵。补让灵气回流。堵让灵气死了。\u201D\n\u201C怎么刻的？\u201D\u201C种地种出来的。\u201D');
+    G.ev.push('zs'); G.v[3] += 5;
+  }
+  return t;
+}
+function afternoonChoices(mAct) {
+  var c = [];
+  if (mAct === 'farm' || mAct === 'farm_w') {
+    c.push({text:'继续翻两行', sub:'力径 · 手热了停不下来', cb:function(){actAfternoon('farm2')}});
+    c.push({text:'田边歇会儿喝口水', sub:'魂径 · 喘口气', cb:function(){actAfternoon('rest')}});
+    c.push({text:'看看旁边水渠通不通', sub:'气径 · 顺手', cb:function(){actAfternoon('channel2')}});
+  } else if (mAct === 'tea') {
+    c.push({text:'喝完茶去田里', sub:'力径 · 茶醒了人有劲', cb:function(){actAfternoon('farm2')}});
+    c.push({text:'再泡一壶', sub:'魂径 · 一壶不够', cb:function(){actAfternoon('tea2')}});
+    if (G.ev.includes('lz1')) c.push({text:'去找老周聊聊', sub:'魂径 · 土味修炼', cb:function(){actAfternoon('zhou')}});
+    else c.push({text:'院子里转转看看灵果', sub:'器径', cb:function(){actAfternoon('fruit2')}});
+  } else if (mAct === 'channel') {
+    c.push({text:'水渠通了回去种地', sub:'力径 · 水通了地软了', cb:function(){actAfternoon('farm2')}});
+    c.push({text:'顺着水渠走到裂隙边', sub:'劫径 · 看看裂隙', cb:function(){actAfternoon('crevice')}});
+    c.push({text:'坐水渠边歇歇', sub:'魂径 · 听水流声', cb:function(){actAfternoon('rest')}});
+  } else if (mAct === 'fruit') {
+    c.push({text:'理完灵果去种地', sub:'力径', cb:function(){actAfternoon('farm2')}});
+    if (G.j[4] >= 1 || G.jie[2] >= 1) c.push({text:'给灵果树刻个引导纹', sub:'阵径+器径', cb:function(){actAfternoon('pattern')}});
+    else c.push({text:'编个竹篮', sub:'器径 · 手指灵巧', cb:function(){actAfternoon('basket')}});
+    c.push({text:'摘几个灵果送宋婶', sub:'器径+好感 · 食物', cb:function(){actAfternoon('song')}});
+  } else if (mAct === 'idle') {
+    c.push({text:'坐够了去翻地', sub:'力径', cb:function(){actAfternoon('farm2')}});
+    c.push({text:'继续坐着发呆', sub:'魂径 · 空脑子', cb:function(){actAfternoon('idle2')}});
+    c.push({text:'起来修水渠', sub:'气径+阵径', cb:function(){actAfternoon('channel2')}});
+  } else if (mAct === 'fire') {
+    c.push({text:'暖够了去翻冻地', sub:'力径', cb:function(){actAfternoon('farm2')}});
+    c.push({text:'帮宋婶看灶上的肉', sub:'器径+好感', cb:function(){actAfternoon('cook2')}});
+    c.push({text:'灶边继续坐着', sub:'魂径 · 暖和', cb:function(){actAfternoon('rest')}});
+  } else if (mAct === 'rune') {
+    c.push({text:'教完去田里翻两行', sub:'力径 · 手痒了', cb:function(){actAfternoon('farm2')}});
+    c.push({text:'再去看看水渠', sub:'气径 · 稳纹和渠通', cb:function(){actAfternoon('channel2')}});
+    c.push({text:'老槐树下歇歇', sub:'魂径 · 喝茶', cb:function(){actAfternoon('rest')}});
+  } else if (mAct === 'breed') {
+    c.push({text:'育完种去翻地', sub:'力径', cb:function(){actAfternoon('farm2')}});
+    c.push({text:'给冬灵草刻引导纹', sub:'阵径+器径', cb:function(){actAfternoon('pattern')}});
+    c.push({text:'摘几个灵果送宋婶', sub:'器径+好感', cb:function(){actAfternoon('song')}});
+  } else if (mAct === 'explore') {
+    c.push({text:'探查完去种地', sub:'力径 · 回来了', cb:function(){actAfternoon('farm2')}});
+    c.push({text:'在裂隙边坐坐', sub:'劫径 · 感知', cb:function(){actAfternoon('crevice')}});
+    c.push({text:'回去泡茶', sub:'魂径 · 脑子满了', cb:function(){actAfternoon('rest')}});
+  }
+  return c;
+}
+
+// ===== 傍晚 =====
+function startEvening(aAct) {
+  dayPhase = 2;
+  story(eveningNarr(aAct), function() { choices(eveningChoices()); });
+}
+function eveningNarr(act) {
+  var t = ['<span class="ptag">秋收</span>'];
+  var d = G.day;
+  t.push('秋深了。灰天变得更灰——但没全黑。');
+  if (act === 'farm2') t.push('田里干了一下午。手上沾满了土。洗了手——水凉的。');
+  else if (act === 'rest') t.push('歇了一下午。脑子空空的。舒服。');
+  else if (act === 'channel2') t.push('水渠又通了一段。灵气在渠里流着——看不见，但感觉得到。');
+  else if (act === 'tea2') t.push('茶喝了两壶。脑子比上午松了。魂径——松了。');
+  else if (act === 'zhou') t.push('和老周聊了一下午。老周说的都是土话——但土话里有真东西。');
+  else if (act === 'fruit2') t.push('灵果理完了。树比上午精神了一点——不多，但多了。');
+  else if (act === 'crevice') {
+    t.push('裂隙边上坐了一会儿。裂隙没动——但也没停。嗡嗡的。');
+    t.push('劫径涨了一点。不是涨——是感知到了。');
+  } else if (act === 'pattern') t.push('引导纹刻完了。灵果树上的纹路亮了一下——灵气顺着纹路流了一圈。');
+  else if (act === 'basket') t.push('竹篮编好了。歪的——但能用。器径涨了一点。手指比之前灵巧了。');
+  else if (act === 'song') t.push('灵果送了宋婶。宋婶笑得眼睛没了：\u201C今晚红烧肉——灵果红烧肉。\u201D');
+  else if (act === 'idle2') t.push('坐了一整载。什么都没干。但脑子比什么时候都空。空了灵气就自流。');
+  else if (act === 'cook2') t.push('帮宋婶看了灶。肉炖烂了。灵果放进去——酱汁浓到挂壁。');
+  else if (act === 'guide') t.push('小豆子在老槐树下练翻地。翻着翻着手上冒了灵光。\n\u201C秦大哥！\u201D\n\u201C别喊。继续翻。灵光自己会走。\u201D');
+
+  // 傍晚事件
+  if (d >= 75 && !G.ev.includes('qs') && G.jie[2] >= 1) {
+    t.push('秋收。全村出动。三百亩一载收完。宋婶端了大盆红烧肉出来。');
+    G.ev.push('qs'); G.v[2] = 80; G.v[3] += 10;
+  }
+  if (d >= 85 && !G.ev.includes('ls') && G.jie[2] >= 1) {
+    t.push('裂隙动了。微动。刻了稳纹——修裂隙像修篱笆。扩张速度降了一半。');
+    G.ev.push('ls');
+  }
+  if (d >= 120 && d <= 128 && !G.ev.includes('nf')) {
+    t.push('年关。宋婶做了三大盆红烧肉。灵果入冬前存了一批。\n全村人挤厨房里。灶台热。人挤着热。灵果红烧肉灵气——三重热。\n宋老根喝了酒：\u201C清泉村这甲子好了。来了个种地的。\u201D');
+    G.ev.push('nf'); G.v[2] = 90; G.v[3] += 10;
+  }
+  if (d >= 220 && !G.ev.includes('qs2') && G.jie[3] >= 1) {
+    t.push('近三甲子秋收。比上甲子多了一茬。\n宋婶做了灵果红烧肉——灵果产量恢复了。灵气回流了。');
+    G.ev.push('qs2'); G.v[2] = 95; G.v[3] += 10;
+  }
+  if (d >= 340 && !G.ev.includes('qs3') && G.jie[5] >= 1) {
+    t.push('近四甲子秋收。比上甲子又多了一茬。\n五户新人家也收了。三百亩不够了——扩了五十亩。\n宋婶做了灵果红烧肉。全村人吃。');
+    G.ev.push('qs3'); G.v[2] = 100; G.v[3] += 10;
+  }
+  if (d > 10 && d < 90 && Math.random() < 0.1) t.push('宋婶做了红烧肉。灵果红烧肉。酱汁浓到挂壁，土豆炖烂了。');
+  return t;
+}
+function eveningChoices() {
+  var c = [], d = G.day;
+  c.push({text:'帮宋婶做饭', sub:'器径+好感 · 食物+1', cb:function(){actEvening('cook')}});
+  c.push({text:'老槐树下坐会儿', sub:'魂径 · 听虫鸣', cb:function(){actEvening('tree')}});
+  if (G.jie[4] >= 1 && d > 280 && G.ev.includes('dz')) {
+    c.push({text:'指导小豆子修炼', sub:'力径+魂径 · 灵根觉醒了', cb:function(){actEvening('guide')}});
+  } else if (G.jie[0] >= 1 && d > 20) {
+    c.push({text:'去裂隙边坐坐', sub:'劫径 · 感知劫钟', cb:function(){actEvening('crevice_e')}});
+  } else if (d > 30) {
+    c.push({text:'教小豆子翻地', sub:'力径 · 小豆子也涨', cb:function(){actEvening('teach')}});
+  }
+  return c;
+}
+
+// ===== 夜里 =====
+function startNight() {
+  dayPhase = 3;
+  story(nightNarr(), function() { after(); });
+}
+function nightNarr() {
+  var t = ['<span class="ptag">冬藏</span>'];
+  var d = G.day;
+  if (d <= 30) {
+    t.push('冬夜。万劫钟在心脏里浮着，不响。');
+    t.push('修仙无日月。一晃又是几载。');
+    t.push('歇了。明年再种。');
+  } else if (d <= 90) {
+    t.push('冬夜静。虫不叫了。百年将尽。');
+    t.push('万劫钟不响。不响就是没事。百年无事就是好日子。');
+  } else if (d <= 130) {
+    t.push('冬夜。静。雪不大。');
+    t.push('百年如白驹过隙。万劫钟不响。');
+  } else if (d <= 260) {
+    t.push('冬夜深了。灰天比百年前亮了一点——不多，但多了。');
+    t.push('万劫钟不响。两甲子了。不响就是好日子。');
+  } else if (d <= 380) {
+    t.push('冬夜。灰天在变亮。不是裂隙的光——是天本身。');
+    t.push('万劫钟浮着。不响。凹槽亮了几个——没全亮。三甲子了。');
+  } else {
+    t.push('冬夜。万劫钟浮着。');
+    t.push('第九个凹槽——还没亮。四百载将近。等。');
+  }
+  return t;
+}
+
+// ===== 活动执行 =====
+function actMorning(act) { applyAct(act); startAfternoon(act); }
+function actAfternoon(act) { applyAct(act); startEvening(act); }
+function actEvening(act) { applyAct(act); startNight(); }
+function applyAct(act) {
+  switch(act) {
+    case 'farm': G.j[0]+=1; G.v[2]+=2; break;
+    case 'farm_w': G.j[0]+=1.2; G.v[2]+=1; break;
+    case 'farm2': G.j[0]+=.8; G.v[2]+=1; break;
+    case 'tea': G.j[2]+=1; break;
+    case 'tea2': G.j[2]+=.8; break;
+    case 'channel': G.j[1]+=1; G.j[4]+=.5; G.v[0]+=3; break;
+    case 'channel2': G.j[1]+=.6; G.j[4]+=.3; G.v[0]+=2; break;
+    case 'fruit': G.j[3]+=.5; G.v[1]+=2; break;
+    case 'fruit2': G.j[3]+=.4; G.v[1]+=1; break;
+    case 'idle': G.j[2]+=.5; break;
+    case 'idle2': G.j[2]+=.8; break;
+    case 'rest': G.j[2]+=.4; break;
+    case 'fire': G.j[2]+=.5; G.v[3]+=2; break;
+    case 'zhou': G.j[2]+=1; break;
+    case 'crevice': G.j[5]+=.5; break;
+    case 'crevice_e': G.j[5]+=.4; break;
+    case 'pattern': G.j[4]+=.5; G.j[3]+=.3; G.v[1]+=1; break;
+    case 'basket': G.j[3]+=.5; break;
+    case 'song': G.j[3]+=.3; G.v[2]+=1; G.v[3]+=3; break;
+    case 'cook': G.j[3]+=.5; G.v[2]+=1; G.v[3]+=2; break;
+    case 'cook2': G.j[3]+=.4; G.v[3]+=2; break;
+    case 'tree': G.j[2]+=.5; break;
+    case 'teach': G.j[0]+=.5; G.xz+=1; break;
+    case 'guide': G.j[0]+=.5; G.j[2]+=.5; G.v[3]+=3; break;
+    case 'rune': G.j[4]+=1; G.j[5]+=.5; G.v[3]+=2; break;
+    case 'breed': G.j[3]+=.8; G.v[1]+=3; break;
+    case 'explore': G.j[5]+=1; G.j[2]+=.8; break;
+  }
+}
+
+// ========== 特殊事件 ==========
+function checkSpecial() {
+  var d = G.day;
+  // 天渊宗来访
+  if (d >= 35 && d <= 42 && !G.ev.includes('ty') && G.jie[0] >= 1 && G.jie[1] >= 1) {
+    return function() {
+      story(['<span class="ptag">故人来</span>','<span class="hi">天渊宗的人来了。</span>三个弟子。灰袍。','\u201C秦荒师兄——长老让我等来看看。敲钟人还好吗。\u201D','\u201C<span class="wm">还好。在种地。</span>\u201D'], function() {
+        G.ev.push('ty');
+        choices([
+          {text:'出去聊聊', sub:'长老还好吗', cb:function(){ story(['秦荒放下锄头走过去。\n\u201C长老还好吗？\u201D\n\u201C宗主安好。长老让我等带话——钟过了几劫，宗门有修炼资源备着。随时回来。\u201D\n\u201C不回。在这里种地。但谢了。\u201D\n弟子看了看三百亩田。点了点头。走了。'], function(){ G.ev.push('tyc'); G.v[3]+=5; after(); }); }},
+          {text:'让他们回去', sub:'不用来了', cb:function(){ story(['秦荒走过去。\n\u201C回去跟长老说——钟醒了。人也好。不用来了。\u201D\n\u201C师兄——长老说宗门随时——\u201D\n\u201C我知道。种地呢。\u201D\n弟子走了。'], function(){ G.ev.push('tyc'); after(); }); }},
+          {text:'不见——继续翻地', sub:'懒得动', cb:function(){ story(['秦荒继续翻地。没抬头。\n弟子站了一会儿。看了看田。走了。\n宋老根：\u201C天渊宗的人。来干什么的？\u201D\n\u201C看看。看完了。\u201D'], function(){ G.ev.push('tyc'); after(); }); }}
+        ]);
+      });
+    };
+  }
+  // 域会
+  if (d === 90 && !G.ev.includes('yh')) {
+    return function() {
+      story(['<span class="ptag">域会消息</span>','宋老根带回消息。','<span class="hi">苍梧域要开域会——讨论裂隙扩张问题。</span>'], function() {
+        G.ev.push('yh');
+        choices([
+          {text:'不去域会——麦子还得晒', sub:'扎根清泉', cb:function(){ story(['秦荒没去。\u201C麦子还得晒。灵药还没种。\u201D\n宋老根笑了：\u201C行。你不去我去。替清泉村听听。\u201D'], function(){ G.ev.push('yhc'); G.v[3]+=10; after(); }); }},
+          {text:'去域会看看', sub:'出山一趟', cb:function(){ story(['域会讨论裂隙扩张。天渊宗要加固封印。域府要迁移。\n秦荒说了稳纹——有人笑。种地的人讲阵纹？\n但数据摆出来了。三载灵气涨三倍。\n域会安静了。'], function(){ G.ev.push('yhc'); G.v[3]+=5; after(); }); }},
+          {text:'继续种地——管他什么域会', sub:'闲', cb:function(){ story(['秦荒没抬头。\u201C域会跟我有什么关系。\u201D\n继续翻地。\n宋老根走了。'], function(){ G.ev.push('yhc'); after(); }); }}
+        ]);
+      });
+    };
+  }
+  // 第二甲子结束
+  if (d >= 270 && !G.ev.includes('end2') && G.jie[3] >= 1) {
+    return function() {
+      story(['<span class="ptag">第二甲子过去了</span>','两甲子了。四劫渡了。灰天黄昏的光从一片白变成两片白。','宋老根端着茶过来：\u201C又过了一甲子。你想清楚了？\u201D'], function() {
+        G.ev.push('end2');
+        var opts = [
+          {text:'继续种地——第二甲子也过了', sub:'扎根·二', cb:function(){ending('扎根2')}},
+          {text:'完界碎片还活着——去看看', sub:'出山·二', cb:function(){ending('出山2')}}
+        ];
+        if (G.j[0] >= 7 && G.j[2] >= 7 && G.j[5] >= 5) opts.push({text:'不知不觉——闲仙', sub:'闲仙·二', cb:function(){ending('闲仙2')}});
+        choices(opts);
+      });
+    };
+  }
+  // 第三甲子结束
+  if (d >= 370 && !G.ev.includes('end3') && G.jie[5] >= 1) {
+    return function() {
+      story(['<span class="ptag">第三甲子过去了</span>','三甲子了。六劫渡了。','灰天——比三甲子前亮了一层。不是裂隙的光。是天本身在变亮。','宋老根端着茶过来：\u201C三甲子了。你想清楚了？\u201D'], function() {
+        G.ev.push('end3');
+        var opts = [
+          {text:'继续种地——第三甲子也过了', sub:'扎根·三', cb:function(){ending('扎根3')}},
+          {text:'裂隙在自愈——去看看完界碎片', sub:'出山·三', cb:function(){ending('出山3')}}
+        ];
+        if (G.j[0] >= 7 && G.j[2] >= 7 && G.j[5] >= 7) opts.push({text:'不知不觉——闲仙', sub:'闲仙·三', cb:function(){ending('闲仙3')}});
+        if (G.jie[7] < 1) {
+          opts.push({text:'等——万劫钟还没响完', sub:'劫未渡完', cb:function(){ story(['秦荒没走。\n\u201C万劫钟还没响完。\u201D\n宋老根看了他一眼。\u201C那就等着。茶给你备着。\u201D'], function(){ after(); }); }});
+        } else if (G.jie[8] < 1) {
+          opts.push({text:'等第九劫——万劫钟还差最后一响', sub:'飞升劫·未至', cb:function(){ story(['秦荒没走。\n\u201C第九劫还没来。但快了。\u201D\n宋老根：\u201C那就等着。茶给你备着。\u201D'], function(){ after(); }); }});
+        }
+        choices(opts);
+      });
+    };
+  }
+  return null;
+}
+
+// ========== 劫钟系统 ==========
+function chkJie() {
+  var ps = pathSum();
+  if (G.jie[0] < 1 && G.j[0] >= 3) { G.cj=0; G.jd=0; }
+  else if (G.jie[1] < 1 && G.j[2] >= 3 && G.jie[0] >= 1) { G.cj=1; G.jd=0; }
+  else if (G.jie[2] < 1 && G.j[0] >= 5 && G.j[2] >= 5 && G.j[1] >= 5 && G.jie[0] >= 1 && G.jie[1] >= 1) { G.cj=2; G.jd=0; }
+  else if (G.jie[3] < 1 && G.j[5] >= 4 && G.jie[0] >= 1 && G.jie[1] >= 1 && G.jie[2] >= 1 && G.day >= 130) { G.cj=3; G.jd=0; }
+  else if (G.jie[4] < 1 && G.j[5] >= 6 && G.j[4] >= 5 && G.jie[3] >= 1 && G.day >= 250) { G.cj=4; G.jd=0; }
+  else if (G.jie[5] < 1 && G.j[5] >= 7 && G.j[2] >= 6 && G.jie[4] >= 1 && G.day >= 300) { G.cj=5; G.jd=0; }
+  else if (G.jie[6] < 1 && G.j[0] >= 7 && G.j[5] >= 8 && G.jie[5] >= 1 && G.day >= 340) { G.cj=6; G.jd=0; }
+  else if (G.jie[7] < 1 && ps >= 36 && G.jie[6] >= 1 && G.day >= 370) { G.cj=7; G.jd=0; }
+  else if (G.jie[8] < 1 && ps >= 42 && G.jie[7] >= 1 && G.day >= 390) { G.cj=8; G.jd=0; }
+}
+function jieStart() {
+  updateUI();
+  var jt = [
+    // 1 天雷
+    ['钟响了。第一个凹槽\u201C天雷\u201D亮了。','<span class="wr">第一劫·天雷劫。</span>','雷从上面灌下来。万道。','荒骨碎了合，合了碎。碎了三千次。','到最后不叫荒骨了。<span class="hi">雷骨。</span>碰他，雷劈你。','前世记忆：完界边军斥候。守了七载荒原。'],
+    // 2 心魔
+    ['钟响了。第二个凹槽\u201C心魔\u201D亮了。','<span class="wr">第二劫·心魔劫。</span>七载。','母亲的幻境。\u201C荒骨体质是你的。我留给你的。活着。\u201D','心魔用最疼的点制造错位。','<span class="hi">心壁。</span>精神力涨十倍。','前世记忆：完界崩溃时的难民。跑了七载。'],
+    // 3 血噬
+    ['钟响了。第三个凹槽\u201C血噬\u201D亮了。','<span class="wr">第三劫·血噬劫。</span>','灵血像无数细蛇缠上雷骨。一口一口啃。','灵血耗尽。新的灵血从心脏涌出来。纯度十倍。','<span class="hi">血脉净化。</span>','前世记忆：完界阵师。刻阵纹——试图把碎片连起来。失败了。'],
+    // 4 地裂
+    ['钟响了。第四个凹槽<span class="hi">\u201C地裂\u201D</span>亮了。','<span class="wr">第四劫·地裂劫。</span>','裂隙扩到了清泉村。体内荒骨也裂了——从脚底往头顶。','心壁挡了一下——挡住了。但薄了。薄了像纸。透光的纸。','<span class="hi">心壁透光。</span>看见了裂隙里的完界碎片。碎片没死。灵气还在流。','前世记忆：完界修脉师。修断裂的灵脉——像修水渠。先止血再慢慢补。'],
+    // 5 虚空
+    ['钟响了。第五个凹槽<span class="hi">\u201C虚空\u201D</span>亮了。','<span class="wr">第五劫·虚空劫。</span>','完界碎片灵气断了。断的时候——心壁也断了。魂径散了。力径散了。','虚空不是空——是断。断了就是没了。','但钟还在。钟不灭——劫还没完。心壁散了再聚。魂径断了再连。','<span class="hi">灵脉重连。</span>像修水渠——先止血再慢慢补。','前世记忆：完界缝合师。把碎片缝在一起——用灵脉当线。'],
+    // 6 业火
+    ['钟响了。第六个凹槽<span class="hi">\u201C业火\u201D</span>亮了。','<span class="wr">第六劫·业火劫。</span>','不是天火。是业火。前世今生积的业。','每一个选择、每一个遗憾、每一个没能救下的人——都是柴。','火从骨头里烧出来。不是疼——是重。烧掉的东西很重。','五载。业火烧尽了。烧完之后——身体轻了。','<span class="hi">业火净体。</span>轻了说明之前重。','前世记忆：完界守护者。留下来殿后的那个人。死了——让别人活了。'],
+    // 7 天命
+    ['钟响了。第七个凹槽<span class="hi">\u201C天命\u201D</span>亮了。','<span class="wr">第七劫·天命劫。</span>','天命不是命令——是问题。','\u201C你要拿力量做什么？\u201D','七载。不疼。但比疼难。','答案不是话。是日子。是田。是茶。是水渠。是村子。','<span class="hi">天命觉醒。</span>答案不是做大事——是做好小事。','前世记忆：初代修仙者。不是要成仙——是种地种出来的。种着种着就修了。修了也不知道。'],
+    // 8 轮回
+    ['钟响了。第八个凹槽<span class="hi">\u201C轮回\u201D</span>亮了。','<span class="wr">第八劫·轮回劫。</span>','不是前世——是轮回本身。看见了轮子。','轮子不是牢——是磨。磨经验成智慧。','四载。看着轮子转。','每一世都是同一个人。想做好事。经常失败。但一直在试。','<span class="hi">轮回通透。</span>看见轮子了——就不怕轮子了。','前世记忆：万界之主。不是暴君——是看门人。把力量散回万界。困着不如流着。'],
+    // 9 飞升
+    ['钟响了。第九个凹槽<span class="hi">\u201C飞升\u201D</span>亮了。','<span class="wr">第九劫·飞升劫。</span>','天开了。不是裂隙——是灰天本身。裂开了。','光从天上落下来。不是雷。是光。','每一世的记忆、选择——全部。','身体装不下。身体碎了。不是碎——是变。','三载。变完了。光散了。身体是新的。钟是静的。','九个凹槽全亮了。<span class="hi">万劫已渡。</span>']
+  ];
+  story(['茶杯热气歪了一下。','钟震了。'], function(){
+    story(jt[G.cj], function(){
+      choices([{text:'扛劫', sub:NM[G.cj], cb:function(){jieDay()}}]);
+    });
+  });
+}
+function jieDay() {
+  G.jd++;
+  var left = DR[G.cj] - G.jd;
+  if (left <= 0) {
+    G.jie[G.cj] = 1;
+    G.j[0] += 2; G.j[2] += 2; G.j[5] += 1;
+    if (G.cj === 2) { G.j[4] += 3; G.j[1] += 1; }
+    if (G.cj === 3) { G.j[5] += 1; G.j[4] += 1; notify('劫径·灵品初段 — 能提前三载感知劫钟预震'); }
+    if (G.cj === 4) { G.j[5] += 2; G.j[4] += 2; G.j[2] += 1; notify('灵脉重连 — 阵径+劫径大幅提升'); }
+    if (G.cj === 5) { G.j[0] += 1; G.j[2] += 1; notify('业火净体 — 全身业障焚尽'); }
+    if (G.cj === 6) { G.j[5] += 1; G.j[0] += 1; notify('天命觉醒 — 答案不是话，是日子'); }
+    if (G.cj === 7) { G.j[4] += 1; G.j[5] += 1; notify('轮回通透 — 看见轮子了'); }
+    if (G.cj === 8) { G.j[5] += 2; G.j[4] += 1; G.j[2] += 1; notify('万劫已渡 — 飞升劫渡完'); }
+    G.cj = null; G.jd = 0;
+    if (G.jie[8] >= 1) { ninthEnding(); return; }
+    notify('劫已渡');
+    story(['劫过了。','端起茶杯喝了一口。','<span class="wm">继续喝茶。</span>'], function(){ chkLvNotify(); day(); });
+    return;
+  }
+  var dt = [
+    '天雷灌体。第'+G.jd+'载。扛着。疼。但没断。还剩'+left+'载。',
+    '心魔幻境。第'+G.jd+'载。遗憾、愤怒、恐惧被放大。还剩'+left+'载。',
+    '灵血自噬。第'+G.jd+'载。雷骨被围，心壁被啃。还剩'+left+'载。',
+    '地裂入骨。第'+G.jd+'载。荒骨从脚底裂——心壁薄了但没穿。还剩'+left+'载。',
+    '虚空断脉。第'+G.jd+'载。完界碎片灵气断了——心壁散了再聚。还剩'+left+'载。',
+    '业火焚身。第'+G.jd+'载。前世的业从骨头里烧出来——重的烧掉了。还剩'+left+'载。',
+    '天命叩问。第'+G.jd+'载。不是疼——是问。答案不是话。是日子。还剩'+left+'载。',
+    '轮回流转。第'+G.jd+'载。看着轮子转。每一世都是同一个人。还剩'+left+'载。',
+    '飞升化形。第'+G.jd+'载。光灌进身体——装不下。碎了。在变。还剩'+left+'载。'
+  ];
+  story([dt[G.cj]], function(){
+    choices([{text:'继续扛', sub:'还剩'+left+'载', cb:function(){jieDay()}}]);
+  });
+}
+
+// ========== 第九劫后·终局选择 ==========
+function ninthEnding() {
+  story([
+    '九劫渡完了。',
+    '万劫钟九个凹槽全亮了。钟没再响。不会再响了。',
+    '灰天——亮了。不是裂隙的光。是天本身。',
+    '光从天上落下来。',
+    '秦荒站在光里。',
+    '宋婶从厨房探出头：\u201C秦荒？吃饭了。灵果红烧肉。\u201D'
+  ], function() {
+    choices([
+      {text:'飞升 — 天门已开', sub:'九劫刑完始得仙', cb:function(){ending('飞升')}},
+      {text:'留下 — 种地喝茶修水渠', sub:'凡心', cb:function(){ending('凡心')}}
+    ]);
+  });
+}
+
+// ========== 等级通知 ==========
+function chkLvNotify() {
+  for (var i = 0; i < 6; i++) {
+    var now = Math.floor(G.j[i]);
+    var prev = Math.floor(G.prevLv[i] || 0);
+    if (now > prev && now <= 9) notify(JN[i] + '·' + LV[now]);
+  }
+  G.prevLv = G.j.slice();
+}
+
+// ========== 结局 ==========
+function ending(type) {
+  hide('gameScreen'); show('endScreen');
+  var el = document.getElementById('endScreen');
+  el.className = 'es'; el.innerHTML = '';
+  var texts = {
+    '扎根': ['<span class="et">扎根·清泉</span>','你没去域会。麦子还得晒。灵药还没种。','宋老根替你去听了。\u201C域会说了什么？\u201D\u201C裂隙扩张的事。\u201D\u201C方案——好不好？\u201D\u201C不如咱的稳纹。咱的稳纹是绷带——但绷带比什么都不贴好。\u201D','晚风。茶杯热气被风吹斜了一点。灰天黄昏透出一点光——比之前多了。不多。但多了。','<span class="wm">第一甲子过了。扎根了。</span>'],
+    '出山': ['<span class="et">出山·域会</span>','你去了域会。天渊宗要加固封印。域府要迁移。','你的稳纹减缓扩张。域会有人笑——种地的人讲阵纹？','但数据摆出来了。域会安静了。','回村。宋婶做了红烧肉。'],
+    '闲仙': ['<span class="et">闲仙</span>','三劫渡了。没去域会。没出山。没碾压任何人。','域会的人来找你——你在老槐树下喝茶。','\u201C你的稳纹怎么刻的？\u201D\u201C种地种出来的。\u201D','报告上写了一个词：<span class="hi">闲仙</span>。不是封号。是描述。一个闲着的仙。种地喝茶修水渠。不知不觉比所有人都强。'],
+    '沉沦': ['<span class="et">沉沦·裂隙</span>','劫扛不过。灵血枯竭。变成干壳。','但裂隙里还有光。万劫钟还在。钟不灭说明劫还没完。','<span class="gm">不是终点。是另一条路的起点。</span>'],
+    '扎根2': ['<span class="et">扎根·第二甲子</span>','第二甲子也过了。','冬灵草扛过了冬。小麦收了两茬。稳纹刻了两个。裂隙扩张减了百分之四十。','域府巡查使走了——\u201C你的稳纹有效。域府记录了。\u201D','四劫渡了。力径圣品初段。魂径灵品后段。劫径灵品初段。','灰天黄昏透出的光——从一片白变成一片半白。','<span class="wm">第二甲子过了。扎根深了。</span>'],
+    '出山2': ['<span class="et">出山·完界碎片</span>','第四劫渡了。心壁透光——看见了裂隙里的完界碎片。','碎片没死。灵气还在流。光还在。','秦荒站起来了。不是想变强——是想去看。','宋老根在村口看他走。\u201C麦子我帮你看着。\u201D','秦荒走了。裂隙方向——完界碎片方向。','灰天黄昏透出的光——从一片半白变成两片白。'],
+    '闲仙2': ['<span class="et">闲仙·第二甲子</span>','四劫渡了。六径四条灵品以上。','没出山。没碾压任何人。','域府的报告——清泉村两甲子灵气涨十倍。稳纹减缓裂隙扩张百分之四十。','域府的人来的时候他在老槐树下喝茶。','\u201C你的稳纹怎么刻的？\u201D\u201C种地种出来的。\u201D','报告上又写了：<span class="hi">闲仙</span>。一个闲着的仙。种地喝茶修水渠。不知不觉比所有人都强。'],
+    '扎根3': ['<span class="et">扎根·第三甲子</span>','第三甲子也过了。','六劫渡了。冬灵草育了种。稳纹推广了全域。裂隙在自愈——不是停，是在缩。','三百亩不够了——扩了五十亩。五户新人家也种了。','域府的报告：清泉村三甲子灵气涨三十倍。裂隙自愈速度——每年缩半里。','六劫渡了。力径圣品中段。魂径圣品初段。劫径圣品初段。','灰天——亮了一层。不是裂隙的光。是天本身。','<span class="wm">第三甲子过了。扎根更深了。</span>'],
+    '出山3': ['<span class="et">出山·第三甲子</span>','六劫渡了。裂隙在自愈。完界碎片在回流。','秦荒站起来了。不是想变强——是想去看。','裂隙在缩。完界碎片在自愈。灵气在回流。','想去看看——完界碎片里还有什么。裂隙通向哪里。','宋老根在村口看他走。\u201C麦子我帮你看着。五户人家也看着。\u201D','秦荒走了。裂隙方向——完界碎片方向。','灰天——亮了一层。天本身在变亮。'],
+    '闲仙3': ['<span class="et">闲仙·第三甲子</span>','六劫渡了。六径五条圣品以上。','没出山。没碾压任何人。','域府推广稳纹法——全域学习。裂隙自愈。完界碎片回流。','三百亩扩了五十亩。五户新人家也种了。小豆子灵根觉醒了。','域府的人来的时候他在老槐树下喝茶。','\u201C你的稳纹怎么刻的？\u201D\u201C种地种出来的。\u201D','报告上又写了：<span class="hi">闲仙</span>。一个闲着的仙。三甲子。种地喝茶修水渠。裂隙自愈了。完界碎片回流了。不知不觉——把裂隙修好了。'],
+    '飞升': ['<span class="et">飞升</span>','九劫渡完了。万劫钟九个凹槽全亮了。钟没再响。','天开了。光从天上落下来。','秦荒看了一眼清泉村。三百亩田。水渠。老槐树。宋婶的厨房。','他走了。光是暖的。','飞升了。','但飞升之前他做了一件事——把万劫钟留在了清泉村。','钟不响了。但钟在。','后来清泉村的孩子们说——老槐树下有一口钟。不响。但摸一下，灵气会顺着手流进身体。','他们不知道钟是谁留的。','只知道——种地的时候灵气厚，喝茶的时候脑子清，修水渠的时候阵纹顺。','<span class="hi">九劫刑完始得仙。</span>'],
+    '凡心': ['<span class="et">凡心</span>','\u201C天门开了？那也得先把麦子收了。\u201D','秦荒没走。','光散了。灰天还是灰天——但比之前亮了一点。不多。但多了。','九劫渡完了。没飞升。','万劫钟留在了身体里。九个凹槽全亮着。不响了。','秦荒继续种地。喝茶。修水渠。','近四甲子秋收比三甲子多了一茬。','宋婶做了灵果红烧肉。酱汁浓到挂壁。土豆炖烂了。','秦荒吃了三碗。','后来域府的报告上写了一个词：<span class="hi">凡心</span>。','不是封号。是描述。一个渡了九劫没飞升的人。','报告旁边批了一行小字：','\u201C此人不可估量。\u201D']
+  };
+  var t = texts[type] || texts['扎根'];
+  t.forEach(function(s) {
+    if (s.indexOf('<span') === 0) el.innerHTML += s;
+    else { var p = document.createElement('p'); p.className = 'st2'; p.innerHTML = proc(s); el.appendChild(p); }
+  });
+  var btn = document.createElement('button');
+  btn.className = 'rb'; btn.textContent = '重新种地';
+  btn.onclick = function() { hide('endScreen'); show('titleScreen'); chkLoad(); };
+  el.appendChild(btn);
+}
+
+// ========== 渲染 ==========
+function proc(s) { return s.replace(/\n/g, '<br>'); }
+function story(texts, cb) {
+  var b = document.getElementById('storyB');
+  b.innerHTML = '';
+  texts.forEach(function(t, i) {
+    if (t === '') { b.appendChild(document.createElement('br')); return; }
+    var p = document.createElement('p');
+    p.className = 'st2';
+    p.innerHTML = proc(t);
+    p.style.animationDelay = (.2 + i * .12) + 's';
+    b.appendChild(p);
+  });
+  if (cb) setTimeout(cb, Math.min(texts.length * 130 + 700, 2800));
+}
+function choices(opts) {
+  var b = document.getElementById('choiceB');
+  b.innerHTML = '';
+  opts.forEach(function(o) {
+    var btn = document.createElement('button');
+    btn.className = 'bc';
+    btn.innerHTML = o.text + (o.sub ? '<div class="su">' + o.sub + '</div>' : '');
+    btn.onclick = function() { o.cb(); };
+    b.appendChild(btn);
+  });
+}
+function notify(msg) {
+  var n = document.createElement('div');
+  n.className = 'nb'; n.textContent = msg;
+  document.body.appendChild(n);
+  setTimeout(function() { n.remove(); }, 3000);
+}
+
+// ========== UI更新 ==========
+function updateUI() {
+  document.getElementById('dayN').textContent = G.day;
+  document.getElementById('seasonT').textContent = sn();
+  document.getElementById('charTitle').textContent = getTitle();
+  var zi = document.getElementById('zhongI');
+  var js = jieSum();
+  if (G.cj !== null) zi.className = 'zhong a';
+  else if (js < 9) zi.className = 'zhong p';
+  else zi.className = 'zhong';
+  // 六径
+  var paths = document.getElementById('paths');
+  paths.innerHTML = '';
+  for (var i = 0; i < 6; i++) {
+    var pct = Math.min(G.j[i] / 9 * 100, 100);
+    var lvl = LV[Math.min(Math.floor(G.j[i]), 9)];
+    paths.innerHTML += '<div class="pr"><span class="pn">' + JN[i] + '</span><div class="pb"><div class="pf" style="width:' + pct + '%;background:' + JC[i] + '"></div></div><span class="pl">' + lvl + '</span></div>';
+  }
+  // 劫钟点 (9个)
+  var jrow = document.getElementById('jieRow');
+  jrow.innerHTML = '<span class="jlabel">劫钟</span>';
+  for (var j = 0; j < 9; j++) {
+    var cls = 'jdot';
+    if (G.jie[j] >= 1) cls += ' done';
+    if (G.cj === j) cls += ' active';
+    jrow.innerHTML += '<span class="' + cls + '"></span>';
+  }
+  // 村子
+  var vrow = document.getElementById('villRow');
+  vrow.innerHTML = '';
+  for (var k = 0; k < 4; k++) {
+    var val = Math.min(G.v[k], 100);
+    vrow.innerHTML += '<span class="vi">' + VN[k] + ' ' + val + '</span>';
+  }
+}
+
+// ========== 启动 ==========
+chkLoad();
+</script>
+</body>
+</html>
