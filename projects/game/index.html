@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>万劫闲仙·清泉岁月 — 项目总览</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Georgia','STSong','SimSun',serif;background:#1a1814;color:#c8b88a;min-height:100vh;overflow-x:hidden}
+.bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;background:linear-gradient(180deg,#1a1814 0%,#2a2418 25%,#3a3328 50%,#5a4e38 70%,#8a7a58 85%,#a89868 100%)}
+.bg::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:radial-gradient(ellipse at 50% 30%,rgba(232,200,96,.08),transparent 60%)}
+.wrap{max-width:720px;margin:0 auto;padding:40px 24px 80px}
+.header{text-align:center;padding:60px 0 40px}
+.bell{width:80px;height:110px;margin:0 auto 20px;opacity:.6}
+.bell svg{width:100%;height:100%}
+.title{font-size:42px;color:#e8c860;text-shadow:0 0 30px rgba(232,200,96,.3),0 0 60px rgba(232,200,96,.1);letter-spacing:8px;margin-bottom:12px}
+.subtitle{font-size:15px;color:#8a7a58;line-height:2;letter-spacing:2px}
+.subtitle .hi{color:#c0902a}
+.divider{width:200px;height:1px;margin:30px auto;background:linear-gradient(90deg,transparent,#c0902a,transparent)}
+.tags{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:40px}
+.tag{padding:6px 18px;border:1px solid rgba(192,144,42,.4);border-radius:20px;font-size:13px;color:#c0902a;background:rgba(192,144,42,.05)}
+.section{margin:40px 0;background:rgba(26,24,20,.6);border:1px solid rgba(192,144,42,.15);border-radius:12px;padding:28px;backdrop-filter:blur(4px)}
+.section h2{font-size:20px;color:#e8c860;margin-bottom:16px;letter-spacing:2px;border-bottom:1px solid rgba(192,144,42,.2);padding-bottom:10px}
+.section p{font-size:15px;line-height:2;color:#b8a87a;margin-bottom:10px}
+.section .label{color:#c0902a;font-weight:bold}
+.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.feature{background:rgba(58,51,40,.5);border:1px solid rgba(192,144,42,.1);border-radius:8px;padding:16px}
+.feature h3{font-size:14px;color:#e8c860;margin-bottom:8px}
+.feature p{font-size:13px;line-height:1.7;color:#9a8a6a;margin:0}
+.timeline{position:relative;padding-left:24px}
+.timeline::before{content:'';position:absolute;left:6px;top:8px;bottom:8px;width:1px;background:linear-gradient(180deg,#c0902a,transparent)}
+.tl-item{position:relative;padding:12px 0 12px 20px}
+.tl-item::before{content:'';position:absolute;left:-18px;top:18px;width:8px;height:8px;border-radius:50%;background:#c0902a;box-shadow:0 0 8px rgba(192,144,42,.4)}
+.tl-time{font-size:12px;color:#8a7a58;margin-bottom:4px}
+.tl-title{font-size:15px;color:#c8b88a}
+.tl-desc{font-size:13px;color:#8a7a58;line-height:1.7;margin-top:4px}
+.file-list{list-style:none}
+.file-item{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid rgba(192,144,42,.1);text-decoration:none;color:inherit;transition:background .2s}
+.file-item:hover{background:rgba(192,144,42,.08)}
+.file-item:last-child{border-bottom:none}
+.file-info{display:flex;align-items:center;gap:14px}
+.file-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;background:rgba(192,144,42,.1);border:1px solid rgba(192,144,42,.2)}
+.file-name{font-size:15px;color:#c8b88a}
+.file-meta{font-size:12px;color:#8a7a58;margin-top:2px}
+.file-arrow{color:#c0902a;font-size:18px}
+.play-btn{display:block;width:100%;max-width:300px;margin:40px auto 0;padding:16px;text-align:center;font-size:18px;color:#1a1814;background:linear-gradient(135deg,#e8c860,#c0902a);border:none;border-radius:8px;text-decoration:none;letter-spacing:4px;box-shadow:0 4px 20px rgba(192,144,42,.3);transition:transform .2s,box-shadow .2s}
+.play-btn:hover{transform:translateY(-2px);box-shadow:0 6px 30px rgba(192,144,42,.4)}
+.stats{display:flex;justify-content:space-around;margin:20px 0}
+.stat{text-align:center}
+.stat-num{font-size:28px;color:#e8c860;font-weight:bold}
+.stat-label{font-size:12px;color:#8a7a58;margin-top:4px;letter-spacing:1px}
+.ending-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.ending{padding:10px 8px;text-align:center;font-size:12px;border-radius:6px;background:rgba(58,51,40,.5);border:1px solid rgba(192,144,42,.1)}
+.ending .e-name{color:#e8c860;font-weight:bold;margin-bottom:4px}
+.ending .e-desc{color:#8a7a58;font-size:11px;line-height:1.5}
+.footer{text-align:center;padding:40px 0 20px;font-size:12px;color:#5a4e38;line-height:2}
+@media(max-width:600px){.feature-grid{grid-template-columns:1fr}.ending-grid{grid-template-columns:repeat(2,1fr)}.title{font-size:32px;letter-spacing:4px}}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="wrap">
+
+<div class="header">
+<div class="bell">
+<svg viewBox="0 0 140 200" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="bb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8c860" stop-opacity=".2"/><stop offset="1" stop-color="#8a6020" stop-opacity=".1"/></linearGradient>
+</defs>
+<line x1="70" y1="0" x2="70" y2="22" stroke="#c0902a" stroke-width="2" opacity=".5"/>
+<path d="M52 28 Q60 14 70 12 Q80 14 88 28" fill="none" stroke="#c0902a" stroke-width="2" opacity=".7"/>
+<path d="M30 38 Q30 33 42 31 L98 31 Q110 33 110 38 L116 115 Q116 130 104 137 L36 137 Q24 130 24 115 Z" fill="url(#bb)" stroke="#c0902a" stroke-width="2" opacity=".8"/>
+<line x1="28" y1="58" x2="112" y2="58" stroke="#c0902a" stroke-width=".8" opacity=".25"/>
+<line x1="27" y1="76" x2="113" y2="76" stroke="#c0902a" stroke-width=".8" opacity=".2"/>
+<line x1="26" y1="94" x2="114" y2="94" stroke="#c0902a" stroke-width=".8" opacity=".15"/>
+<circle cx="40" cy="52" r="3" fill="none" stroke="#e8c860" stroke-width="1.2" opacity=".4"/>
+<circle cx="55" cy="49" r="3" fill="none" stroke="#e8c860" stroke-width="1.2" opacity=".4"/>
+<circle cx="70" cy="48" r="3" fill="none" stroke="#e8c860" stroke-width="1.2" opacity=".4"/>
+<circle cx="85" cy="49" r="3" fill="none" stroke="#e8c860" stroke-width="1.2" opacity=".4"/>
+<circle cx="100" cy="52" r="3" fill="none" stroke="#e8c860" stroke-width="1.2" opacity=".4"/>
+<path d="M24 115 Q30 122 36 115 Q42 122 48 115 Q54 122 60 115 Q66 122 72 115 Q78 122 84 115 Q90 122 96 115 Q102 122 108 115 Q112 122 116 115" fill="none" stroke="#c0902a" stroke-width="2" opacity=".7"/>
+<line x1="70" y1="125" x2="70" y2="150" stroke="#c0902a" stroke-width="2" opacity=".5"/>
+<circle cx="70" cy="153" r="6" fill="#c0902a" opacity=".35"/>
+</svg>
+</div>
+<h1 class="title">万劫闲仙</h1>
+<div class="subtitle">
+<span class="hi">清泉岁月</span> · 文字选择修仙游戏<br>
+<span style="font-size:13px;opacity:.6">三千功满飞升日，九劫刑完始得仙</span>
+</div>
+<div class="divider"></div>
+<div class="tags">
+<span class="tag">种地</span>
+<span class="tag">喝茶</span>
+<span class="tag">渡劫</span>
+<span class="tag">成仙</span>
+</div>
+</div>
+
+<div class="stats">
+<div class="stat"><div class="stat-num">968</div><div class="stat-label">行代码</div></div>
+<div class="stat"><div class="stat-num">9</div><div class="stat-label">劫难</div></div>
+<div class="stat"><div class="stat-num">12</div><div class="stat-label">结局</div></div>
+<div class="stat"><div class="stat-num">400</div><div class="stat-label">载岁月</div></div>
+</div>
+
+<div class="section">
+<h2>项目概述</h2>
+<p>《万劫闲仙·清泉岁月》是一款单 HTML 文件的文字选择类修仙游戏。玩家扮演秦荒——天渊宗弟子、万劫钟的敲钟人——在清泉村种地、喝茶、渡劫、不知不觉变强。</p>
+<p><span class="label">核心设计：</span>修炼=过日子，过日子=修炼。种地是力径，喝茶是魂径，修水渠是气径+阵径。不刻意修炼，日子过得好修炼自然涨。</p>
+<p><span class="label">时间跨度：</span>400年（近七甲子），从初到清泉村到四百载将近，四季轮转——春耕、夏长、秋收、冬藏。</p>
+</div>
+
+<div class="section">
+<h2>核心设定</h2>
+<div class="feature-grid">
+<div class="feature">
+<h3>万劫钟·本命法宝</h3>
+<p>秦荒生来带的法宝。钟认了他——他是敲钟人。钟要醒，得过一场大劫。天渊宗长老知道这点，送他去裂隙边过劫。</p>
+</div>
+<div class="feature">
+<h3>九劫系统</h3>
+<p>天雷→心魔→血噬→地裂→虚空→业火→天命→轮回→飞升。每劫有前世记忆、独特叙事和属性奖励。渡完九劫可选择飞升或留下。</p>
+</div>
+<div class="feature">
+<h3>六径并行</h3>
+<p>力径·气径·魂径·器径·阵径·劫径，六条路同时走。种地锤力径，喝茶锤魂径，刻纹锤阵径——日常行为自动涨修为。</p>
+</div>
+<div class="feature">
+<h3>链式选择</h3>
+<p>每载四个阶段：春耕→夏长→秋收→冬藏。每阶段的选择引发后续场景和选项，像故事链而非菜单。3个选择/载。</p>
+</div>
+<div class="feature">
+<h3>村子状态</h3>
+<p>水渠、灵果、食物、好感——四个维度跟踪清泉村的变化。村子越好，灵气越厚，修炼越快。</p>
+</div>
+<div class="feature">
+<h3>12个结局</h3>
+<p>扎根/出山/闲仙 × 三甲子 + 沉沦 + 飞升/凡心。没有坏结局——只有不同的活法。</p>
+</div>
+</div>
+</div>
+
+<div class="section">
+<h2>结局一览</h2>
+<div class="ending-grid">
+<div class="ending"><div class="e-name">扎根</div><div class="e-desc">留在清泉村，麦子还得晒</div></div>
+<div class="ending"><div class="e-name">出山</div><div class="e-desc">去域会，数据摆出来了</div></div>
+<div class="ending"><div class="e-name">闲仙</div><div class="e-desc">喝茶的老槐树下，闲着的仙</div></div>
+<div class="ending"><div class="e-name">扎根2</div><div class="e-desc">第二甲子，稳纹推广</div></div>
+<div class="ending"><div class="e-name">出山2</div><div class="e-desc">去看完界碎片</div></div>
+<div class="ending"><div class="e-name">闲仙2</div><div class="e-desc">两甲子灵气涨十倍</div></div>
+<div class="ending"><div class="e-name">扎根3</div><div class="e-desc">第三甲子，裂隙自愈</div></div>
+<div class="ending"><div class="e-name">出山3</div><div class="e-desc">裂隙在缩，去看</div></div>
+<div class="ending"><div class="e-name">闲仙3</div><div class="e-desc">三甲子，裂隙修好了</div></div>
+<div class="ending"><div class="e-name">沉沦</div><div class="e-desc">劫扛不过，但钟不灭</div></div>
+<div class="ending"><div class="e-name">飞升</div><div class="e-desc">九劫渡完，天门已开</div></div>
+<div class="ending"><div class="e-name">凡心</div><div class="e-desc">九劫渡完，不飞升，种地</div></div>
+</div>
+</div>
+
+<div class="section">
+<h2>项目演进</h2>
+<div class="timeline">
+<div class="tl-item">
+<div class="tl-time">第一阶段</div>
+<div class="tl-title">都市小说 → 修仙爽文</div>
+<div class="tl-desc">从《暗账》到《满级大佬回村了》到《万劫武尊》——经历三次赛道转换，最终定位修仙题材</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">第二阶段</div>
+<div class="tl-title">从热血爽文到悠闲修仙</div>
+<div class="tl-desc">保留劫钟、裂界、六径、前世记忆设定，叙事风格从打脸碾压转为悠闲种田。"死过一次了，这辈子只想好好活着"</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">第三阶段</div>
+<div class="tl-title">去AI痕迹 + 语言质感优化</div>
+<div class="tl-desc">删掉所有表格/系统化说明/总结性独白。对白改自然混乱，增加感官细节，意象代替叙述</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">第四阶段</div>
+<div class="tl-title">小说 → 游戏</div>
+<div class="tl-desc">基于小说《万劫闲仙》开发文字选择游戏《清泉岁月》。单HTML文件，链式选择系统，九劫十二结局</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">第五阶段</div>
+<div class="tl-title">九劫完善 + 时间跨度修正</div>
+<div class="tl-desc">五劫扩展为九劫，时间从400天改为400年（修仙尺度），季节改为春耕/夏长/秋收/冬藏</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">第六阶段</div>
+<div class="tl-title">叙事重构——敲钟人设定</div>
+<div class="tl-desc">去掉苦大仇深的背叛叙事。万劫钟=本命法宝，长老知情且有意帮忙。秦荒对天渊宗态度看玩家选择</div>
+</div>
+</div>
+</div>
+
+<div class="section">
+<h2>项目文件</h2>
+<div class="file-list">
+<a class="file-item" href="万劫闲仙_清泉岁月.html">
+<div class="file-info">
+<div class="file-icon">🎮</div>
+<div>
+<div class="file-name">万劫闲仙_清泉岁月.html</div>
+<div class="file-meta">游戏本体 · 968行 · 单HTML文件</div>
+</div>
+</div>
+<div class="file-arrow">›</div>
+</a>
+<a class="file-item" href="游戏企划.md">
+<div class="file-info">
+<div class="file-icon">📋</div>
+<div>
+<div class="file-name">游戏企划.md</div>
+<div class="file-meta">设计文档 · 系统设计/流程/结局规划</div>
+</div>
+</div>
+<div class="file-arrow">›</div>
+</a>
+<a class="file-item" href="原著小说.md">
+<div class="file-info">
+<div class="file-icon">📖</div>
+<div>
+<div class="file-name">原著小说.md</div>
+<div class="file-meta">《万劫闲仙》终版 · 游戏改编原著</div>
+</div>
+</div>
+<div class="file-arrow">›</div>
+</a>
+</div>
+</div>
+
+<a class="play-btn" href="万劫闲仙_清泉岁月.html">开始游戏</a>
+
+<div class="footer">
+万劫闲仙·清泉岁月<br>
+单次游玩约20-40分钟 · 九劫 · 十二结局<br>
+<span style="opacity:.5">用 CodeBuddy 构建</span>
+</div>
+
+</div>
+</body>
+</html>
