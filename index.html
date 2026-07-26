@@ -1,0 +1,174 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>马育琪 · 作品集</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#12110f;--surface:#1a1816;--surface2:#22201d;--border:#2a2825;--text:#c8c4be;--text-dim:#7a766e;--text-dimmer:#5a5650;--accent-a:#7a9ab5;--accent-b:#c0902a;--radius:10px}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;line-height:1.6}
+.bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;background:radial-gradient(ellipse at 30% 20%,rgba(122,154,181,.04),transparent 50%),radial-gradient(ellipse at 70% 80%,rgba(192,144,42,.035),transparent 50%)}
+.wrap{max-width:900px;margin:0 auto;padding:80px 28px 120px;position:relative}
+.hero{text-align:center;padding:60px 0 80px;position:relative}
+.hero-glint{position:absolute;top:50%;left:50%;width:400px;height:400px;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(122,154,181,.06),transparent 60%);pointer-events:none}
+.hero-name{font-size:52px;font-weight:600;color:var(--text);letter-spacing:8px;margin-bottom:10px;position:relative}
+.hero-name::after{content:"";display:block;width:48px;height:2px;margin:18px auto 0;background:linear-gradient(90deg,var(--accent-a),var(--accent-b));border-radius:1px}
+.hero-sub{font-size:15px;color:var(--text-dim);letter-spacing:4px;margin-top:18px}
+.hero-sub span{color:var(--accent-b)}
+.divider{width:100%;height:1px;margin:0 0 60px;background:linear-gradient(90deg,transparent,var(--border) 20%,var(--border) 80%,transparent)}
+.section-title{font-size:14px;color:var(--text-dimmer);letter-spacing:6px;margin-bottom:36px;display:flex;align-items:center;gap:14px}
+.section-title::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)}
+.project{margin-bottom:60px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color .3s}
+.project:hover{border-color:rgba(255,255,255,.08)}
+.project-inner{padding:40px}
+.project-header{display:flex;align-items:flex-start;gap:24px;margin-bottom:24px}
+.project-icon{width:52px;height:52px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.project-icon.aero{background:rgba(122,154,181,.08);border:1px solid rgba(122,154,181,.2)}
+.project-icon.game{background:rgba(192,144,42,.08);border:1px solid rgba(192,144,42,.2)}
+.project-meta{flex:1;min-width:0}
+.project-name{font-size:22px;font-weight:600;color:var(--text);margin-bottom:4px}
+.project-name .hl-a{color:var(--accent-a)}
+.project-name .hl-b{color:var(--accent-b)}
+.project-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.project-tags .tag{font-size:11px;padding:3px 12px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);color:var(--text-dim);letter-spacing:1px}
+.project-desc p{font-size:14px;line-height:1.9;color:var(--text-dim);margin-bottom:20px}
+.sub-head{font-size:13px;font-weight:500;color:var(--text-dimmer);letter-spacing:2px;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.sub-head::before{content:"";width:3px;height:3px;border-radius:50%;background:var(--text-dimmer)}
+.sub-grid{display:grid;gap:10px;margin-bottom:24px}
+.sub-grid .sub-item{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:14px 16px}
+.sub-item .item-title{font-size:14px;font-weight:500;color:var(--text);margin-bottom:3px}
+.sub-item .item-desc{font-size:12px;color:var(--text-dimmer);line-height:1.6}
+.file-list{display:grid;gap:8px}
+.file-link{display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;text-decoration:none;color:inherit;transition:all .2s}
+.file-link:hover{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.1)}
+.file-link .fl-icon{font-size:16px;width:20px;text-align:center;flex-shrink:0;opacity:.6}
+.file-link .fl-name{font-size:13px;flex:1;min-width:0}
+.file-link .fl-size{font-size:11px;color:var(--text-dimmer);flex-shrink:0}
+.file-link .fl-arrow{color:var(--text-dimmer);font-size:14px;margin-left:4px}
+.game-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 24px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:500;letter-spacing:2px;transition:all .2s;margin-top:16px;background:linear-gradient(135deg,rgba(192,144,42,.15),rgba(192,144,42,.05));border:1px solid rgba(192,144,42,.3);color:var(--accent-b)}
+.game-btn:hover{background:linear-gradient(135deg,rgba(192,144,42,.25),rgba(192,144,42,.1));box-shadow:0 4px 20px rgba(192,144,42,.12);transform:translateY(-1px)}
+.footer{text-align:center;padding:60px 0 20px;font-size:12px;color:var(--text-dimmer);line-height:2}
+.footer span{opacity:.5}
+@media(max-width:640px){
+  .wrap{padding:40px 18px 80px}
+  .hero{padding:40px 0 50px}
+  .hero-name{font-size:34px;letter-spacing:5px}
+  .project-inner{padding:24px}
+  .project-header{flex-direction:column;gap:14px}
+  .project-name{font-size:19px}
+}
+@media(min-width:641px){
+  .col2{grid-template-columns:1fr 1fr}
+  .col3{grid-template-columns:1fr 1fr 1fr}
+}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="wrap">
+
+<div class="hero">
+<div class="hero-glint"></div>
+<div class="hero-name">马育琪</div>
+<div class="hero-sub">飞行器控制 · <span>嵌入式开发</span> · 游戏设计</div>
+</div>
+
+<div class="divider"></div>
+<div class="section-title">项目</div>
+
+<div class="project">
+<div class="project-inner">
+<div class="project-header">
+<div class="project-icon aero">&#9992;</div>
+<div class="project-meta">
+<div class="project-name">飞行器控制系统 &amp; <span class="hl-a">鹏翼1000</span></div>
+<div class="project-tags">
+<span class="tag">STM32</span>
+<span class="tag">C</span>
+<span class="tag">嵌入式</span>
+<span class="tag">四旋翼</span>
+<span class="tag">飞行控制</span>
+<span class="tag">民航</span>
+</div>
+</div>
+</div>
+
+<div class="project-desc">
+<p>航空航天方向的两个项目——一个从硬件底层搭建四旋翼飞行器控制系统，另一个从宏观层面对鹏翼1000公务机进行市场与技术研究。覆盖嵌入式开发到航空产业分析。</p>
+</div>
+
+<div class="sub-head">基于 STM32 的四旋翼飞行器控制系统</div>
+<div class="sub-grid col2">
+<div class="sub-item"><div class="item-title">MCU</div><div class="item-desc">STM32F103C8T6 (ARM Cortex-M3, 72MHz)</div></div>
+<div class="sub-item"><div class="item-title">传感器</div><div class="item-desc">六轴陀螺仪 &amp; 气压计姿态传感器</div></div>
+<div class="sub-item"><div class="item-title">控制算法</div><div class="item-desc">卡尔曼滤波 + 级联 PID 姿态控制</div></div>
+<div class="sub-item"><div class="item-title">通信</div><div class="item-desc">2.4G 无线通信 + USART 串口中断</div></div>
+</div>
+
+<div class="sub-head">鹏翼1000公务机研究报告</div>
+<div class="sub-grid col3">
+<div class="sub-item"><div class="item-title">机型定位</div><div class="item-desc">高端公务机 · 市场与技术研究</div></div>
+<div class="sub-item"><div class="item-title">内容</div><div class="item-desc">产业分析、技术路线、竞争对标</div></div>
+<div class="sub-item"><div class="item-title">交付</div><div class="item-desc">研究报告 + 展示PPT</div></div>
+</div>
+
+<div class="sub-head" style="margin-top:24px">文件</div>
+<div class="file-list">
+<a class="file-link" href="projects/aerospace/202304094204马育琪飞行器控制系统课程设计报告.docx" target="_blank"><span class="fl-icon">&#128196;</span><span class="fl-name">飞行器控制系统课程设计报告</span><span class="fl-size">19KB</span><span class="fl-arrow">&#8599;</span></a>
+<a class="file-link" href="projects/aerospace/鹏翼1000公务机研究报告3版(2)_20260710195723.pdf" target="_blank"><span class="fl-icon">&#128213;</span><span class="fl-name">鹏翼1000公务机研究报告</span><span class="fl-size">1.2MB</span><span class="fl-arrow">&#8599;</span></a>
+<a class="file-link" href="projects/aerospace/鹏翼1000展示PPT.pptx" target="_blank"><span class="fl-icon">&#128202;</span><span class="fl-name">鹏翼1000展示PPT</span><span class="fl-size">4.4MB</span><span class="fl-arrow">&#8599;</span></a>
+</div>
+
+</div>
+</div>
+
+<div class="project">
+<div class="project-inner">
+<div class="project-header">
+<div class="project-icon game">&#128276;</div>
+<div class="project-meta">
+<div class="project-name"><span class="hl-b">万劫闲仙</span> · 清泉岁月</div>
+<div class="project-tags">
+<span class="tag">HTML游戏</span>
+<span class="tag">文字冒险</span>
+<span class="tag">修仙</span>
+<span class="tag">种田</span>
+<span class="tag">叙事设计</span>
+</div>
+</div>
+</div>
+
+<div class="project-desc">
+<p>单 HTML 文件的文字选择修仙游戏。扮演秦荒——天渊宗弟子、万劫钟的敲钟人——在清泉村种地、喝茶、渡劫，不知不觉变强。九劫系统、六径并行、12个结局。修炼就是过日子，过日子就是修炼。</p>
+</div>
+
+<div class="sub-head">核心玩法</div>
+<div class="sub-grid col3">
+<div class="sub-item"><div class="item-title">日常选择</div><div class="item-desc">种地、喝茶、修水渠——日常行为自动涨修为</div></div>
+<div class="sub-item"><div class="item-title">劫钟系统</div><div class="item-desc">条件触发渡劫，扛过获得能力+前世记忆</div></div>
+<div class="sub-item"><div class="item-title">六径并行</div><div class="item-desc">力·气·魂·器·阵·劫，六条路同时涨</div></div>
+</div>
+
+<div class="sub-head">文件</div>
+<div class="file-list">
+<a class="file-link" href="projects/game/万劫闲仙_清泉岁月.html" target="_blank"><span class="fl-icon">&#127918;</span><span class="fl-name">万劫闲仙_清泉岁月.html</span><span class="fl-size">游戏本体</span><span class="fl-arrow">&#8599;</span></a>
+<a class="file-link" href="projects/game/游戏企划.md" target="_blank"><span class="fl-icon">&#128203;</span><span class="fl-name">游戏企划.md</span><span class="fl-size">设计文档</span><span class="fl-arrow">&#8599;</span></a>
+<a class="file-link" href="projects/game/原著小说.md" target="_blank"><span class="fl-icon">&#128214;</span><span class="fl-name">原著小说.md</span><span class="fl-size">84KB</span><span class="fl-arrow">&#8599;</span></a>
+<a class="file-link" href="projects/game/index.html" target="_blank"><span class="fl-icon">&#127968;</span><span class="fl-name">项目总览页</span><span class="fl-size">详情</span><span class="fl-arrow">&#8599;</span></a>
+</div>
+
+<a href="projects/game/万劫闲仙_清泉岁月.html" target="_blank" class="game-btn">&#9654; 开始游戏</a>
+
+</div>
+</div>
+
+<div class="footer">
+马育琪 · 作品集<br>
+<span>STM32 &#183; C &#183; HTML &#183; CSS &#183; JavaScript &#183; 文字叙事</span>
+</div>
+
+</div>
+</body>
+</html>
